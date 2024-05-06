@@ -23,15 +23,17 @@
 
         </div>
         <!--버튼-->
-        <div class="btnWrap col-2 flex items-center justify-center" style="height: 50px; width: 100%; margin: 4% 0   ">
-          <button class="clickBtn "  style="border-radius: 10px; height:50px; width: 30%; margin-right: 4%; color: #ffffff;  background: rgba(156,135,251,0.71); border :0; ">
+        <div class="btnWrap col-2 flex items-center justify-center" style="height: 50px; width: 100%; margin: 25px  0 0 0   ">
+          <button class="clickBtn "  style="border-radius: 10px; height:50px; width: 30%; margin-right: 5%; color: #ffffff;  background: rgba(156,135,251,0.71); border :0; ">
             <span class="material-symbols-outlined">arrow_selector_tool
-            <div class="recepWord" style="font-size: 1rem;   font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">&nbsp; 접수</div>
+            <span class="recepWord" style="font-size: 1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
+                &nbsp; 접수
+            </span>
             </span>
           </button>
-          <button class="shareBtn"  style="border-radius: 10px; height:50px; width: 30%; color: #413090; margin-right: 4%;color: #ffffff;  background: rgba(156,135,251,0.71); border :0;   ">
+          <button class="shareBtn"  style="border-radius: 10px; height:50px; width: 30%;  margin-right: 5%; color: #ffffff;  background: rgba(156,135,251,0.71); border :0;   ">
             <span class="material-symbols-outlined">share
-            <div class="shareWord" style="font-size: 1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">&nbsp; 공유</div>
+            <span class="shareWord" style="font-size: 1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">&nbsp; 공유</span>
             </span>
           </button>
           <button class="heartBtn"  style="height:50px; width: 50px;color: #ffffff;  background: rgba(156,135,251,0.71); border :0;  border-radius:50px;  " @click="fillHeart">
@@ -89,24 +91,24 @@
 
     <!-- 그래프-->
 
-      <div class="graphSet1 col-3 row flex items-start justify-center" style="width:100%;  height: 500px ; ">
-        <div class="graph1   col-6 column flex  items-center justify-center" style=" height: 300px; width: 49%; margin-right: 2% ">
+      <div class="graphSet1 col-3 row flex items-center justify-center" style="width:100%;  height: 400px ;  ">
+        <div class="graph1   col-6 column flex  items-center justify-center" style=" height: 400px; width: 49%; margin-right: 2% ">
           <!-- graph1의 내용 -->
-          <div class="chartTitle text-center" style="width:100%; background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ; padding:2% ">
+          <div class="chartTitle text-center" style="width:100%; height: 80px; background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ; padding:5% ">
             <div class="chartTitle1" style=" font-family: 'Gmarket Sans', sans-serif;font-weight: bold; font-size : 1.1rem; color: #413090; ">• 연도별 합격률</div>
           </div>
-          <div class="lineChart  flex column items-center justify-center " style="width: 100%; height: 70% ; padding:2% ;background: rgba(255,255,255,0.71); border-radius: 0 0 8px 8px;" >
+          <div class="lineChart  flex column items-center justify-center " style="width: 100%; height: 70% ; padding:5% ;background: rgba(255,255,255,0.71); border-radius: 0 0 8px 8px;" >
             <canvas  id="lineChart1"></canvas>
           </div>
         </div>
 
-        <div class="graph2  col-6  flex column items-center justify-center " style="height: 300px; width: 49%">
+        <div class="graph2  col-6  flex column items-center justify-center " style="height: 400px; width: 49%">
 
           <!-- graph2의 내용 -->
-          <div  class="chartTitle text-center"  style="width:100%; background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ;  padding:2% ">
+          <div  class="chartTitle text-center"  style="width:100%; height: 80px; background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ;  padding:5% ">
           <div class="chartTitle2"  style=" font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size : 1.1rem; color: #413090;">• 이 자격증을 소유한 사람이 취득한 자격증</div>
           </div>
-          <div class="polarAreaChart flex column items-center justify-center " style="width: 100%; height: 70% ;padding:2% ;background: rgba(255,255,255,0.71);  border-radius: 0 0 8px 8px;" >
+          <div class="polarAreaChart flex column items-center justify-center " style="width: 100%; height: 70% ;padding:4% ;background: rgba(255,255,255,0.71);  border-radius: 0 0 8px 8px;" >
             <canvas id="polarAreaChart1" ></canvas>
           </div>
         </div>
@@ -117,7 +119,7 @@
       <div class="infoTab col-12 flex column" style="width: 100%; height: 300px">
         <div class="tabs">
           <div>
-            <button class="tablinks" @click="openTab('tab1')" :class="{active: currentId === 'tab1'}">상세정보</button>
+            <button class="tablinks"  @click="openTab('tab1')" :class="{active: currentId === 'tab1'}">상세정보</button>
             <button class="tablinks" @click="openTab('tab2')" :class="{active: currentId === 'tab2'}">관련기사</button>
             <button class="tablinks" @click="openTab('tab3')" :class="{active: currentId === 'tab3'}">합격자 후기</button>
           </div>
@@ -271,16 +273,17 @@ export default {
 
 
 <style  scoped lang="scss">
-.tablinks {
+
+.tablinks{
   border-radius: 7px 7px 0 0;
-  background: rgba(179, 222, 253, 0.71);
+background: rgba(156,135,251,0.71);
   line-height: 24px;
   padding: 10px 30px;
   font-size: 1.1rem;
   width: auto;
   font-family: 'Gmarket Sans', sans-serif;
   font-weight: bold;
-  color: #413090;
+  color: #ffffff;
   border: 1px;
 }
 
@@ -289,6 +292,7 @@ export default {
 }
 .active {
   background: rgba(255, 255, 255, 0.71);
+  color: #413090
 }
 .contents {
   position: relative;
@@ -361,32 +365,16 @@ export default {
 
   .Menu3 {
     order: -1;
-    flex-direction: column;
-    align-items: center;
-    height: 30%;
     width: 100%;
-
   }
 
   .Menu2 {
-    flex-direction: column;
-    align-items: center;
-    margin: 12% 0 0 0;
     width: 100%;
   }
   .backgroundCerti {
     width: 100%
   }
-  .btnWrap {
-    align-items: center;
-    justify-content: center;
-    width: 100%
-  }
-  .clickBtn, .shareBtn {
 
-    font-size: 0.6rem;
-    width: 25%;
-  }
 
   .certifiCard {
     display: none;
@@ -394,7 +382,6 @@ export default {
 
   .aiSummary {
     width: 40%;
-
   }
   .summary {
     width: 20%;
@@ -404,29 +391,24 @@ export default {
     flex-direction: row;
 
   }
-  .graph1{
-    margin-left:6%;
-  }
 
-.graph2 {
-  display: none;
-
-}
-.tablinks {
+.tablinks1, .tablinks2, .tablinks3 {
     border-radius: 7px 7px 0 0;
-    background: rgba(213, 250, 253, 0.54);
+  background: rgba(156,135,251,0.71);
     line-height: 24px;
     padding: 5px 20px;
     font-size: 0.7rem;
     width: auto;
     font-family: 'Gmarket Sans', sans-serif;
     font-weight: bold;
-    color: #413090;
+    color: #ffffff;
     border: 1px;
   }
 }
+
 .active {
-  background: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.71);
+  color: #413090;
 }
 
 </style>
