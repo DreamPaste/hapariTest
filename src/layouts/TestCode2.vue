@@ -42,38 +42,32 @@
         </div>
       </div>
       <div class="Menu3 col-7 flex column items-center justify-center" >
-        <table class="infotable "   >
+        <table class="infotable">
+          <tr>
+            <td class="tableTitle" >대상</td>
+            <td class="tableContent">누구나, 유치원, 초등학생, 중학생, 고등학생<br> 대학생, 대학원생, 외국인, 일반인</td>
 
-          <tbody>
-          <tr>
-            <td class="text-center" style="font-weight: bold;">대상</td>
-            <td class="text-center">누구나, 유치원, 초등학생, 중학생, 고등학생<br> 대학생, 대학원생, 외국인, 일반인</td>
           </tr>
+          <tr >
+            <td class="tableTitle" >지역</td>
+            <td class="tableContent">서울</td>
+          </tr>
+          <tr>
+            <td  class="tableTitle" >응시료</td>
+            <td class="tableContent">5000원</td>
+          </tr>
+          <tr >
 
-          <tr>
-            <td class="text-center" style="font-weight: bold;  ">접수기간</td>
-            <td class="text-center">2024.05.01 ~ 2024.05.12</td>
+            <td  class="tableTitle" >홈페이지</td>
+            <td class="tableContent"><a href="https://www.q-net.or.kr/man001.do?gSite=Q">홈페이지 바로가기</a></td>
           </tr>
           <tr>
-            <td class="text-center" style="font-weight: bold; ">지역</td>
-            <td class="text-center" >서울</td>
+
+            <td  class="tableTitle" >접수방법</td>
+            <td class="tableContent"><a href="https://www.q-net.or.kr/man001.do?gSite=Q">온라인 접수 바로가기</a> </td>
           </tr>
-          <tr>
-            <td class="text-center" style="font-weight: bold;">응시료</td>
-            <td class="text-center" >5000원</td>
-          </tr>
-          <tr>
-            <td class="text-center" style="font-weight: bold; ">홈페이지</td>
-            <td class="text-center" ><a href="https://www.q-net.or.kr/man001.do?gSite=Q">홈페이지 바로가기</a> </td>
-          </tr>
-          <tr>
-            <td class="text-center" style="font-weight: bold; ">접수방법</td>
-            <td class="text-center"><a href="https://www.q-net.or.kr/man001.do?gSite=Q">온라인 접수 바로가기</a> </td>
-          </tr>
-          </tbody>
 
         </table>
-
     </div>
     </div>
 
@@ -97,7 +91,7 @@
           <div class="chartTitle text-center" style="width:100%; height: 80px; background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ; padding:5% ">
             <div class="chartTitle1" style=" font-family: 'Gmarket Sans', sans-serif;font-weight: bold; font-size : 1.1rem; color: #413090; ">• 연도별 합격률</div>
           </div>
-          <div class="lineChart  flex column items-center justify-center " style="width: 100%; height: 70% ; padding:5% ;background: rgba(255,255,255,0.71); border-radius: 0 0 8px 8px;" >
+          <div class="lineChart  flex column items-center justify-center " style="width: 100%; height:280px ; padding:5% 0 10% 0  ;background: rgba(255,255,255,0.71); border-radius: 0 0 8px 8px;" >
             <canvas  id="lineChart1"></canvas>
           </div>
         </div>
@@ -188,19 +182,14 @@ export default {
         data: {
           labels: ['자격증1', '자격증2', '자격증3', '자격증4'],
           datasets: [{
-            data: [12, 19, 3, 5, 2],
+            data: [12, 19, 3, 5],
             backgroundColor: [
-              'rgba(0,255,226,0.74)',
-              'rgba(54,162,235,0.67)',
-              'rgba(20,91,243,0.65)',
-              'rgba(75,192,192,0.73)',
+              'rgba(96,9,203,0.74)',
+              'rgba(138,132,230,0.67)',
+              'rgba(85,59,180,0.65)',
+              'rgba(66,25,244,0.73)',
             ],
-            borderColor: [
-              'rgb(0,255,226)',
-              'rgba(54, 162, 235, 1)',
-              'rgb(20,91,243)',
-              'rgba(75, 192, 192, 1)',
-            ],
+
             borderWidth: 1
           }]
         },
@@ -211,9 +200,12 @@ export default {
             }
           },
           scales: {
+
             y: {
-              beginAtZero: true
-            }
+              beginAtZero: true,
+              display: false
+            },
+
           }
         }
       });
@@ -227,8 +219,9 @@ export default {
         data: {
           labels: ['2019', '2020', '2021', '2022', '2023'],
           datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 20, 35, 41],
+            label: '합격률',
+            fill:'origin',
+            data: [12, 19, 3, 42, 2, 20, 45, 60],
             borderColor: 'rgb(6,10,244)',
             backgroundColor: 'rgba(42,32,194,0.47)',
             borderWidth: 1
@@ -244,8 +237,10 @@ export default {
             }
           },
           scales: {
+
             y: {
-              beginAtZero: true
+              beginAtZero: true,
+
             }
           }
         }
@@ -322,15 +317,26 @@ background: rgba(156,135,251,0.71);
 
 .infotable {
   width: 100%;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.71);
-  border-radius: 10px;
+  height:300px;
+  background: linear-gradient(to top, #cac1f6, #c1c8f4, #c4bdfb);
+  border-radius: 15px;
   color: #413090;
-  border-width: 2px;
-  border-collapse: separate;
-  padding:3%
+  font-family: 'Gmarket Sans', sans-serif;
+padding:2%
 } /*자격증 정보 요약*/
+ td {
+  padding: 8px;
+  text-align: center;
+}
 
+.tableTitle{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.tableContent{
+  font-size: 0.9rem;
+}
 .certifiCard {
   width:95%;
   height: 200px;
