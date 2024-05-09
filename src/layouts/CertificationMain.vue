@@ -30,7 +30,7 @@
             <!-- 달력-->
             <div class="CertiMainCal col-7 flex column items-center justify-start " style=" height :100%; ">
               <div class="CertiCalendar" style=" width:90%; height :70%; border-radius: 10px;  background : rgba(255,255,255,0.54); ">
-            </div>
+              </div>
             </div>
             <!-- 접수일자-->
             <div class="CertiMainCheck col-5 flex column items-center justify-start " style=" height :100%; ">
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      </div>
+    </div>
   </div>
 </template>
 
