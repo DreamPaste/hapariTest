@@ -111,7 +111,7 @@
 
       <!-- 정보탭-->
       <div class="col-6 flex column items-center justify-start" style="width: 100%;">
-        <div class="infoTab col-12 flex column" style="width: 100%; height: 300px ">
+        <div class="infoTab col-12 flex column" style="width: 100%; height: auto ">
           <div class="tabs" >
             <div>
               <button class="tablinks"  @click="openTab('tab1')" :class="{active: currentId === 'tab1'}">상세정보</button>
@@ -122,6 +122,23 @@
           <div class="contents">
             <transition>
               <section class="item" :key="currentId">
+<!--                탭 1일때-->
+                <template v-if="currentId === 'tab2'">
+                  뭐라도 적어볼게
+
+<!--                  <div v-for="item in news_content"-->
+<!--                        :key="item">-->
+                  <div v-for="item in 100" :key="item">
+                    <q-card class="q-ma-sm q-pa-sm">
+                      <div class="text-bold q-my-sm" style="font-size: 1rem;">
+                        뉴스제목{{item}}</div>
+                      뉴스기사{{item}}
+                    </q-card>
+
+                  </div>
+
+                </template>
+<!--                탭 3일때-->
                 <template v-if="currentId === 'tab3'">
                   <div style="display: flex; justify-content: flex-end;">
                     <button class="writeBtn "  style="border-radius: 10px;  background: rgba(96,121,255,0.9);  height:30px; width: 20%;   border :0; ">
@@ -185,13 +202,19 @@ export default {
         { id: 'tab2', content: '탭2 내용' },
         { id: 'tab3', content: '탭3 내용' }
       ],
-      reviews: [
+      reviews:[
         { id: 'user1', content: '합격 후기 내용 1' },
         { id: 'user2', content: '합격 후기 내용 2' },
         { id: 'user3', content: '합격 후기 내용 3' },
         // 추가적인 합격자 후기 내용 및 아이디 추가 가능
       ],
-      current: {} // 현재 선택된 탭의 내용
+      current: {}, // 현재 선택된 탭의 내용
+
+      news_content :[
+        {id: '뉴스제목', content: '뉴스내용'},
+        {id: 'news2', content: '관련기사2'},
+        {id: 'news3', content: '관련기사3'},
+      ],
     };
   },
   mounted() {
