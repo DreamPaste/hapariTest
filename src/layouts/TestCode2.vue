@@ -1,66 +1,61 @@
 <template>
-  <div class="container" style="background: #f8f8f8; display: flex; justify-content: center;">
+  <div class="container" style="background: #f8f8f8; display: flex; justify-content: center; margin: 100px 0;">
     <div class="backgroundCerti flex column items-center justify-center" style=" height:100%; width:1000px ">
-      <div class="Menu1 col-2 flex  row items-center justify-center" style=" width :100%; ">
-<!--       카드, 및 버튼 wrapper-->
-        <div class="Menu2 col-5 flex column justify-evenly" >
+      <div class="Menu-Wrap col-2 flex  row items-center justify-between" style=" width :100%; ">
+        <!--       카드, 및 버튼 wrapper-->
+        <div class="Menu1 col-5">
 
           <!--자격증카드-->
-          <div class="certifiCard row col-10 flex items-center justify-center"  >
+          <div class="certifiCard row  flex items-center "  >
 
             <!-- 분야별icon-->
-            <div class="cardImg col-6 flex items-center justify-center "  >
-            </div>
+            <div class="cardImg col-6 flex items-center justify-center">icon</div>
             <!--자격증카드 내용-->
-            <div class="cardContent col-6" style=" padding: 10px; border-radius: 0 10px 10px 0; " >
-              <div class="text-h6 " style="font-size: 1.6rem; font-family: 'Gmarket Sans', sans-serif; margin-bottom: 20%">
+            <div class="cardContent col-6">
+              <div class="text-h6 " style="font-size: 1.6rem; margin-bottom: 20%">
                 {{ certName }}
               </div>
-              <div class="text-subtitle2  " style="font-size: 1.1rem;  font-family: 'Gmarket Sans', sans-serif;
-    font-weight: bold; margin-bottom: 10% ">공민서님</div>
-              <div class="text-subtitle3  " style="font-size: 0.8rem;  font-family: 'Gmarket Sans', sans-serif;
-    font-weight: bold; ">취득일자: {{ formattedDate }}</div>
+              <div class="text-subtitle2  " style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10% ">
+                {{ Name }}님</div>
+              <div class="text-subtitle3  " style="font-size: 0.8rem; font-weight: bold; ">취득일자: {{ formattedDate }}</div>
             </div>
 
           </div>
           <!--버튼들-->
-          <div class="btnWrap col-2 flex items-center justify-center" style="height: 50px; width: 100%; margin: 25px  0 0 0   ">
-<!--           접수-->
-            <button class="clickBtn "  style=" box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);border-radius: 10px; height:50px; width: 30%; margin-right: 5%;   color: #413090;  border: 1px solid #413090; background: rgb(255,255,255);  ">
-            <span class="material-symbols-outlined">arrow_selector_tool
-            <span class="recepWord" style="font-size: 1.1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
-                &nbsp; 접수
-            </span>
-            </span>
+          <div class="btnWrap flex items-center justify-evenly">
+            <!--           접수-->
+            <button class ="Btns">
+              <span class="material-symbols-outlined">arrow_selector_tool</span>
+              접수
             </button>
-<!--            공유-->
-            <button class="shareBtn"  style="  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3); border-radius: 10px; height:50px; width: 30%;  margin-right: 5%;   color: #413090;   background: rgb(255,255,255);  border: 1px solid #413090   ">
-            <span class="material-symbols-outlined">share
-            <span class="shareWord" style="font-size: 1.1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">&nbsp; 공유</span>
-            </span>
+
+            <!--            공유-->
+            <button class="Btns">
+              <span class="material-symbols-outlined">share</span>
+              공유
             </button>
-<!--            하트-->
-            <button class="heartBtn" style=" box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3); height:50px; width: 50px;  color: #413090;  background: rgba(255,255,255,0.9);   border: 1px solid #413090;  border-radius:50px;  " @click="fillHeart">
+            <!--            하트-->
+            <button class="Btns" @click="fillHeart">
               <span class="material-symbols-outlined" id="heart">favorite</span>
             </button>
           </div>
         </div>
-        <div class="Menu3 col-7 flex column items-center justify-center" >
-          <div  class="infotable ">
+
+        <!--        표-->
+        <div class="Menu2 col-7" >
           <table>
             <caption class="infoTableCaption " style="  color: #413090;">• 시험 정보</caption>
             <tr>
               <td class="tableTitle" id = "tableTarget1">대상</td>
-              <td class="tableContent flex items-center justify-start"  id = "tableTarget2" style="margin-left: 4%">누구나, 유치원, 초등학생, 중학생, 고등학생<br> 대학생, 대학원생, 외국인, 일반인</td>
-
+              <td class="tableContent flex items-center justify-start"  id = "tableTarget2" style="margin-left: 4%">{{target}}</td>
             </tr>
             <tr >
               <td class="tableTitle" >지역</td>
-              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">서울</td>
+              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">{{ location }}</td>
             </tr>
             <tr>
               <td  class="tableTitle" >응시료</td>
-              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">5000원</td>
+              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">{{ price }}원</td>
             </tr>
             <tr >
 
@@ -73,18 +68,16 @@
               <td class="tableContent flex items-center justify-start" id = "tableOnline2" style="margin-left: 4%"><a href="https://www.q-net.or.kr/man001.do?gSite=Q">온라인 접수 바로가기</a> </td>
             </tr>
           </table>
-          </div>
         </div>
       </div>
 
       <!-- ai 요약-->
-      <div class="aiSummary col-1 row flex "  style="   box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3); width:100%; background : rgba(255,255,255,0.71);  height: 150px;  border-radius: 10px; margin-top: 2% ">
-
-        <div class="ai-sum col-2 flex" style="font-size: 1.2rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; width: 90%; height: 15%; margin: 2% 5% 2% 3%; color : #413090">
+      <div class="aiSummary col-1 row flex ">
+        <div class="ai-sum col-2 flex">
           AI 요약
         </div>
 
-        <div class="ai-content col-10 flex item-center   " style=" font-family: 'Gmarket Sans', sans-serif;width : 90%; height: 60%; margin-left: 3%">
+        <div class="ai-content col-10 flex item-center   ">
           <span id="typing-text"></span>
         </div>
       </div>
@@ -92,23 +85,23 @@
       <!-- 그래프-->
 
       <div class="graphSet1 col-3 row flex items-center justify-center" style="width:100%;  height: 400px ;  ">
+        <!-- graph1 -->
         <div class="graph1   col-6 column flex  items-center justify-center" style=" height: 400px; width: 49%; margin-right: 2% ">
-          <!-- graph1의 내용 -->
-          <div class="chartTitle text-center" style="width:100%; height: 80px; box-shadow: 2px 0 4px rgba(184, 182, 182, 0.3); background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ; padding:5% ">
-            <div class="chartTitle1" style=" font-family: 'Gmarket Sans', sans-serif;font-weight: bold; font-size : 1.1rem; color: #413090; ">• 연도별 합격률</div>
+
+          <div class="chartTitle text-center" >
+           • 연도별 합격률
           </div>
-          <div class="lineChart  flex column items-center justify-center " style="  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3); width: 100%; height:280px ; padding:5% 0 10% 0  ;background: rgba(255,255,255,0.71); border-radius: 0 0 8px 8px;" >
+          <div class="lineChart  flex column items-center justify-center ">
             <canvas  id="lineChart1"></canvas>
           </div>
         </div>
 
+        <!-- graph2-->
         <div class="graph2  col-6  flex column items-center justify-center " style="height: 400px; width: 49%">
-
-          <!-- graph2의 내용 -->
-          <div  class="chartTitle text-center"  style="width:100%; height: 80px;box-shadow: 2px 0 4px rgba(184, 182, 182, 0.3); background:  rgba(255,255,255,0.71); border-radius: 8px 8px 0 0 ;  padding:5% ">
-            <div class="chartTitle2"  style=" font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size : 1.1rem; color: #413090;">• 이 자격증을 소유한 사람이 취득한 자격증</div>
+          <div  class="chartTitle text-center" >
+           • 이 자격증을 소유한 사람이 취득한 자격증
           </div>
-          <div class="polarAreaChart flex column items-center justify-center " style="  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3); width: 100%; height: 70% ;padding:4% ;background: rgba(255,255,255,0.71);  border-radius: 0 0 8px 8px;" >
+          <div class="polarAreaChart flex column items-center justify-center "  >
             <canvas id="polarAreaChart1" ></canvas>
           </div>
         </div>
@@ -116,7 +109,7 @@
 
       <!-- 정보탭-->
       <div class="col-6 flex column items-center justify-start" style="width: 100%;">
-        <div class="infoTab col-12 flex column" style="width: 100%; height: 300px ">
+        <div class="infoTab col-12 flex column" style="width: 100%; height: auto ">
           <div class="tabs" >
             <div>
               <button class="tablinks"  @click="openTab('tab1')" :class="{active: currentId === 'tab1'}">상세정보</button>
@@ -127,24 +120,68 @@
           <div class="contents">
             <transition>
               <section class="item" :key="currentId">
-                <template v-if="currentId === 'tab3'">
+                <!--                탭 2일때-->
+                <template v-if="currentId === 'tab2'">
+                  <!--                관련 기사 정렬버튼-->
                   <div style="display: flex; justify-content: flex-end;">
-                  <button class="writeBtn "  style="border-radius: 10px;  background: rgba(96,121,255,0.9);  height:30px; width: 20%;   border :0; ">
-            <span class="recepWord" style="color : white; font-size: 0.8rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
-                나도 후기쓰러가기
-            </span>
-                  </button>
+                  <q-btn-dropdown
+                    style=" background: rgba(96,121,255,0.9);
+                   color : white;" label="Dropdown Button">
+                    <q-list>
+                      <q-item clickable v-close-popup @click="onItemClick">
+                        <q-item-section>
+                          <q-item-label>최신순</q-item-label>
+                        </q-item-section>
+                      </q-item>
+
+                      <q-item clickable v-close-popup @click="onItemClick">
+                        <q-item-section>
+                          <q-item-label>인기순</q-item-label>
+                        </q-item-section>
+                      </q-item>
+
+                    </q-list>
+                  </q-btn-dropdown>
                   </div>
-                  <div style="width: 100%;">
+                  <!--                  <div v-for="item in news_content"-->
+                  <!--                        :key="item">-->
+                  <div v-for="item in 100" :key="item">
+                    <q-card class="q-ma-sm q-pa-sm">
+                      <div class="text-bold q-my-sm"
+                           style="font-size: 1.2rem;
+                           font-family: 'Gmarket Sans', sans-serif;
+                           font-weight: bold;">
+                        뉴스제목{{item}}</div>
+                      뉴스기사{{item}}
+                    </q-card>
+
+                  </div>
+
+                </template>
+                <!--                탭 3일때-->
+                <template v-if="currentId === 'tab3'">
+                  <div style="display: flex;
+                   justify-content: flex-end;">
+                    <q-btn style=" font-size: 1rem;
+                   font-family: 'Gmarket Sans', sans-serif;
+                   font-weight: bold;
+                   background: rgba(96,121,255,0.9);
+                   color : white;
+                   border-radius: 10px" label="나도 후기 남기기" />
+                  </div>
+                  <div>
                     <q-chat-message
-                      v-for="(review, index) in reviews"
+                      v-for="(index) in 100"
                       :key="index"
-                      :name="review.id"
-                      :text="[review.content]"
-                      :sent="index % 2 === 0"
-                      :bg-color="index % 2 === 0 ? 'blue-1' : 'indigo-12'"
-                      :text-color="index % 2 === 0 ? '' : 'white'"
-                    />
+                      :name="'user' + index"
+                      :text="['Message ' + index]"
+                    :sent="index % 2 === 1"
+                    :bg-color="index % 2 === 0 ? 'blue-1' : 'indigo-12'"
+                    :text-color="index % 2 === 0 ? 'indigo-10' : 'white'"
+                    style="font-size: 1.1rem;
+                     font-family: 'Gmarket Sans', sans-serif;
+                     font-weight: bold;"
+                      />
                   </div>
                 </template>
                 <!-- 기존 탭 내용 -->
@@ -172,6 +209,28 @@ export default {
     certName: {
       type: String,
       required: true
+    },
+    Name: {
+      type: String,
+      required: true
+    },
+    target: {
+      type: String,
+      required: true
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
+  },
+  setup () {
+    return {
+      onItemClick () {
+      }
     }
   },
   data() {
@@ -190,13 +249,12 @@ export default {
         { id: 'tab2', content: '탭2 내용' },
         { id: 'tab3', content: '탭3 내용' }
       ],
-      reviews: [
-        { id: 'user1', content: '합격 후기 내용 1' },
-        { id: 'user2', content: '합격 후기 내용 2' },
-        { id: 'user3', content: '합격 후기 내용 3' },
-        // 추가적인 합격자 후기 내용 및 아이디 추가 가능
+      items: [
+
       ],
-      current: {} // 현재 선택된 탭의 내용
+      current: {}, // 현재 선택된 탭의 내용
+      news_content: [
+      ],
     };
   },
   mounted() {
@@ -265,7 +323,7 @@ export default {
           datasets: [{
             label: '합격률',
             fill:'origin',
-            data: [12, 19, 3, 42, 2, 20, 45, 60],
+            data: [12, 69, 3, 42, 2, 20, 45, 60],
             backgroundColor: 'rgb(96,121,255)',
             borderWidth: 1
           }]
@@ -276,14 +334,28 @@ export default {
               display: true,
               font: {
                 size: 16,
+                family: 'Gmarket Sans'
               }
             }
           },
           scales: {
-
-            y: {
-              beginAtZero: true,
-
+            x: {
+              ticks: {
+                font: {
+                  size: 16,
+                  family: 'Gmarket Sans',
+                  weight : 'bold'
+                }
+              }
+            },
+            y: { ticks: {
+                font: {
+                  size: 16,
+                  family: 'Gmarket Sans',
+                  weight : 'bold',
+                  beginAtZero: true
+                }
+          }
             }
           }
         }
@@ -324,6 +396,7 @@ export default {
 
 .tablinks:hover {
   background: rgba(255, 255, 255, 0.71);
+  color: #413090
 }
 
 .active {
@@ -355,24 +428,17 @@ export default {
 }
 
 .v-enter {
-  transform: translateX(-100%);
+  transform: translateX(-50%);
+  opacity: 0;
+
 }
 
 .v-leave-to {
-  transform: translateX(100%);
-}
-
-.infotable {
-  width: 100%;
-  height: 350px;
-  border-radius: 10px ;
-  font-family: 'Gmarket Sans', sans-serif;
-  background: rgba(255, 255, 255, 0.71);
-  padding: 4% 4% 15% 4%;
-  margin-top: 10px;
-  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+  transform: translateX(50%);
+  opacity: 0;
 
 }
+
 table{
   width: 100%;
   height: 100%;
@@ -380,26 +446,28 @@ table{
 }
 td {
   text-align: center;
-  padding: 2.5%;
+  padding: 2%;
 }
 
 #tableOnline1{
   border-radius:  0 0  0 15px ;
 }
- #tableOnline2{
-   border-radius: 0 0 15px   0 ;
- }
+#tableOnline2{
+  border-radius: 0 0 15px   0 ;
+}
 #tableTarget1{
   border-radius:  15px 0  0 0;
 }
- #tableTarget2{
-   border-radius: 0 15px  0 0;
- }
+#tableTarget2{
+  border-radius: 0 15px  0 0;
+}
 .tableTitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #000000;
+  padding: 10px;
   background: rgba(229, 244, 250, 0.71);
+  width:100px;
 }
 
 .tableContent {
@@ -411,19 +479,96 @@ td {
   font-family: 'Gmarket Sans', sans-serif;
   font-weight: bold;
   font-size: 1.1rem;
-  padding: 0  0 3% 0 ;
+  padding: 0  0 3% 0;
+}
+.Menu-Wrap{
+  height: 300px;
+  .Menu1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    .certifiCard {
+      margin:10px;
+      width: 380px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.71);
+      border-radius: 10px;
+      color: #413090;
+      box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+
+      .cardContent{
+        padding: 10px;
+        border-radius: 0 10px 10px 0;
+        font-family: 'Gmarket Sans', sans-serif;
+      }
+    }
+    .btnWrap{
+      width: 100%;
+      height: 50px;
+      font-size: 1.1rem;
+      font-family: 'Gmarket Sans', sans-serif;
+      font-weight: bold;
+
+      .Btns{
+        box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+        height:50px; width: 30%;
+        color: #413090;
+        background: rgba(255,255,255,0.9);
+        border: 1px solid #413090;
+        border-radius:10px;
+
+        &:nth-child(3){
+          width: 50px;
+          border-radius: 50px;
+        }
+
+      }
+    }
+  }
+  .Menu2{
+    height: 100%;
+    border-radius: 10px ;
+    font-family: 'Gmarket Sans', sans-serif;
+    background: rgba(255, 255, 255, 0.71);
+    padding: 5% 2%;
+    margin-top: 10px;
+    box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.certifiCard {
-  width: 95%;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.71);
-  border-radius: 10px;
-  color: #413090;
-  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
-}
+/* ai 요약 */
+ .aiSummary{
+   box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+   width:100%;
+   background : rgba(255,255,255,0.71);
+   height: 150px;
+   border-radius: 10px;
+   margin-top: 2%;
 
-/*자격증 카드*/
+   .ai-sum{
+     font-size: 1.2rem;
+     font-family: 'Gmarket Sans', sans-serif;
+     font-weight: bold;
+     width: 90%;
+     height: 15%;
+     margin: 2% 5% 2% 3%;
+     color : #413090
+   }
+
+   .ai-content{
+     font-family: 'Gmarket Sans', sans-serif;
+     width : 90%;
+     height: 60%;
+     margin-left: 3%
+   }
+ }
 
 .material-symbols-outlined {
   font-size: 150%;
@@ -432,37 +577,67 @@ td {
 #heart.filled {
   color: red;
 }
-
-.lineChartTitle {
+/* 차트 이름*/
+.chartTitle {
+  width:100%;
+  height: 80px;
+  box-shadow: 2px 0 4px rgba(184, 182, 182, 0.3);
+  background:  rgba(255,255,255,0.71);
+  border-radius: 8px 8px 0 0 ;
+  padding:5%;
   font-family: 'Gmarket Sans', sans-serif;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size : 1.1rem;
   color: #413090;
+}
 
+
+/*라인차트*/
+.lineChart{
+  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+  width: 100%;
+  height:280px ;
+  padding:5% 0 8% 0  ;
+  background: rgba(255,255,255,0.71);
+  border-radius: 0 0 8px 8px;
 }
-.review-item {
-  border-bottom: 1px solid rgba(156, 135, 251, 0.71);
-  padding: 20px 0;
-  font-family: 'Gmarket Sans', sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
+/*도넛차트*/
+.polarAreaChart{
+  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+  width: 100%;
+  height: 70% ;padding:4% ;
+  background: rgba(255,255,255,0.71);
+  border-radius: 0 0 8px 8px;
 }
+
+
+
+.q-card:hover {
+  background: rgba(96,121,255,0.9);
+  color: white;
+}
+
+/* 하이퍼링크의 밑줄 제거 */
+a {
+  text-decoration: none;
+}
+
 /*미디어쿼리 800*/
 @media screen and (max-width: 800px) {
-  .Menu1 {
+  .Menu-Wrap {
     flex-direction: column;
     align-items: center;
 
-
   }
 
-  .Menu3 {
+  .Menu2 {
     order: -1;
     width: 100%;
   }
 
-  .Menu2 {
+  .Menu1 {
     width: 100%;
+
   }
   .backgroundCerti {
     width: 100%
@@ -474,7 +649,7 @@ td {
   }
 
   .aiSummary {
-    width: 40%;
+    width:100%;
   }
   .summary {
     width: 20%;
