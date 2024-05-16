@@ -75,7 +75,6 @@ import Chart from 'chart.js/auto';
 
 
 
-
 onMounted(() => {
   createChart();
 });

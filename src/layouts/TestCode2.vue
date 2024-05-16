@@ -152,14 +152,14 @@
                 <!-- 탭 3일 때 -->
                 <template v-if="currentId === 'tab3'">
                   <div style="display: flex; justify-content: flex-end;">
-                    <button class="writeBtn" style="border-radius: 10px; background: rgba(96,121,255,0.9); height: 30px; width: 20%; border: 0;">
+                    <button class="writeBtn" style="border-radius: 10px; background: rgba(96,121,255,0.9); height: 30px; width: 20%; border: 0;" @click="goToCertiReview">
                       <span class="recepWord" style="color: white; font-size: 0.8rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
                         나도 후기 쓰러가기
                       </span>
                     </button>
                   </div>
                   <!-- 합격자 후기 목록 -->
-                  <div v-for="item in 30" :key="item">
+                  <div>
                     <q-chat-message
                       v-for="(index) in 30"
                       :key="index"
@@ -189,7 +189,6 @@
 import Chart from "chart.js/auto";
 
 export default {
-  name: "CertificatePage",
   props: {
     certName: {
       type: String,
@@ -233,7 +232,10 @@ export default {
   },
   methods: {
     onItemClick() {
-      // 클릭 이벤트 처리
+      console.log('Item clicked');
+    },
+    goToCertiReview() {
+      this.$router.push(name='CertiReview');
       console.log('Item clicked');
     },
     fillHeart() {
