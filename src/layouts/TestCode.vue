@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import TestCode2 from 'src/layouts/TestCode2.vue';
+import TestCode2 from 'layouts/Certi-Info.vue';
 
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     openChildPage() {
-      this.currentComponent = 'TestCode2';
+      this.$router.push({ name: 'CertiInfo' });
     }
   }
 };
