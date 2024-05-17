@@ -11,24 +11,60 @@
             <!-- 자격증 카드 내용 -->
             <div class="cardContent col-6" style="padding: 10px; border-radius: 0 10px 10px 0; font-family: 'Gmarket Sans', sans-serif;">
               <div class="text-h6" style="font-size: 1.6rem; margin-bottom: 20%;">{{ certName }}</div>
-              <div class="text-subtitle2" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10%;">{{ Name }}님</div>
+              <div class="text-subtitle2" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15%;">{{ Name }}님</div>
               <div class="text-subtitle3" style="font-size: 0.8rem; font-weight: bold;">취득일자: {{ formattedDate }}</div>
             </div>
           </div>
-          <!-- 버튼들 -->
-          <div class="btnWrap flex items-center justify-evenly" style="font-size: 1.1rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
+          <!-- 버튼 감싸는 요소 -->
+          <div class="btnWrap flex items-center justify-evenly">
             <!-- 접수 -->
-            <button class="Btns">
-              <span class="material-symbols-outlined">arrow_selector_tool</span>
-              접수
-            </button>
+            <q-btn
+              icon="navigation" label="접수"
+              style="background: rgba(255, 255, 255, 0.71);
+              border: 1px solid #413090;
+              color: #413090;
+              height: 100%; width: 33%;
+              border-radius: 10px;
+              padding:10px;
+              font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1rem" />
             <!-- 공유 -->
-            <button class="Btns">
-              <span class="material-symbols-outlined">share</span>
-              공유
-            </button>
+            <q-btn-dropdown
+              push
+              no-caps
+              icon="share"
+              label="공유"
+              @click="onMainClick"
+
+              style="border: 1px solid #413090;
+              color: #413090;
+              height: 100%; width: 33%;
+              border-radius: 10px;
+               padding:10px;
+              font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1rem"
+            >
+              <!-- 공유 드롭다운-->
+              <q-list>
+                <q-item clickable v-close-popup @click="copyURL">
+                  <q-item-section>
+                    <q-item-label>URL 복사</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>쪽지로 공유</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+
             <!-- 하트 -->
-            <button class="Btns" @click="fillHeart">
+            <button class="Btns" @click="fillHeart"
+                    style="color:#413090;
+                    background: rgba(255, 255, 255, 0.71);
+                    border-radius: 50px;
+                    border: 1px solid #413090;
+                    height: 100%; width: 50px">
               <span class="material-symbols-outlined" id="heart">favorite</span>
             </button>
           </div>
@@ -39,15 +75,15 @@
             <caption class="infoTableCaption" style="color: #413090;">• 시험 정보</caption>
             <tr>
               <td class="tableTitle" id="tableTarget1">대상</td>
-              <td class="tableContent flex items-center justify-start" id="tableTarget2" style="margin-left: 4%">{{ target }}</td>
+              <td class="tableContent flex items-center justify-start" id="tableTarget2" style="margin-left: 4%"></td>
             </tr>
             <tr>
               <td class="tableTitle">지역</td>
-              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">{{ location }}</td>
+              <td class="tableContent flex items-center justify-start" style="margin-left: 4%"></td>
             </tr>
             <tr>
               <td class="tableTitle">응시료</td>
-              <td class="tableContent flex items-center justify-start" style="margin-left: 4%">{{ price }}원</td>
+              <td class="tableContent flex items-center justify-start" style="margin-left: 4%"></td>
             </tr>
             <tr>
               <td class="tableTitle">홈페이지</td>
@@ -105,7 +141,7 @@
                 <template v-if="currentId === 'tab2'">
                   <!-- 관련 기사 정렬버튼 -->
                   <div style="display: flex; justify-content: flex-end;">
-                    <q-btn-dropdown style="background: rgba(96,121,255,0.9); color: white;" label="Dropdown Button">
+                    <q-btn-dropdown style="background: rgba(96,121,255,0.9); color: white;" label="Dropdown Button ">
                       <q-list>
                         <q-item clickable v-close-popup @click="onItemClick">
                           <q-item-section>
@@ -126,7 +162,7 @@
                       <div class="newsWrap row  " style=" height : 100%">
                         <!-- 뉴스기사 썸네일 -->
                         <div class="news-Thumbnail col-2 flex column items-center justify-center" style="border: 1px solid #413090;" >
-                         썸네일
+                          썸네일
                         </div>
 
                         <!-- 뉴스 제목, 내용, 조회수 묶음-->
@@ -183,33 +219,23 @@
   </div>
 </template>
 
-
-
 <script>
 import Chart from "chart.js/auto";
+import axios from 'axios';
 
 export default {
   props: {
     certName: {
       type: String,
       required: true,
+
     },
     Name: {
       type: String,
       required: true,
+      default: "공민서"
     },
-    target: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: String,
-      required: true,
-    },
+
   },
   data() {
     return {
@@ -234,14 +260,32 @@ export default {
     onItemClick() {
       console.log('Item clicked');
     },
+    onMainClick() {
+      console.log('Main clicked');
+    },
+    async copyURL() {
+      try {
+        // 현재 페이지의 URL 가져오기
+        const currentURL = window.location.href;
+
+        // 클립보드에 텍스트 복사
+        await navigator.clipboard.writeText(currentURL);
+
+        // 복사 완료 메시지 등을 사용자에게 표시할 수 있음
+        alert('URL이 복사되었습니다.');
+      } catch (error) {
+        // 복사 실패 시 에러 처리
+        console.error('URL 복사에 실패했습니다:', error);
+      }
+    },
     goToCertiReview() {
       this.$router.push(name='CertiReview');
-      console.log('Item clicked');
     },
     fillHeart() {
-      const heart = document.getElementById("heart");
-      heart.classList.toggle("filled");
-      heart.textContent = heart.textContent === "favorite" ? "favorite_border" : "favorite";
+      document.getElementById('heart').addEventListener('click', function() {
+        this.classList.toggle('filled');
+      });
+
     },
     openTab(tabId) {
       this.currentId = tabId;
@@ -389,12 +433,12 @@ export default {
 
 .tablinks:hover {
   background: rgba(255, 255, 255, 0.71);
-  color: #413090
+  color: #413090;
 }
 
 .active {
   background: rgba(255, 255, 255, 0.71);
-  color: #413090
+  color: #413090;
 }
 
 .contents {
@@ -412,55 +456,43 @@ export default {
   box-sizing: border-box;
   padding: 10px;
   width: 100%;
-  transition: all 0.8s ease;
-}
-
-/* 트랜지션 전용 스타일 */
-.v-leave-active {
-  position: absolute;
-}
-
-.v-enter {
-  transform: translateX(-50%);
-  opacity: 0;
 
 }
 
-.v-leave-to {
-  transform: translateX(50%);
-  opacity: 0;
-
+table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
 }
 
-  table{
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
-  }
 td {
   text-align: center;
   padding: 2%;
 }
 
-#tableOnline1{
-  border-radius:  0 0  0 15px ;
+#tableOnline1 {
+  border-radius: 0 0 0 15px;
 }
-#tableOnline2{
-  border-radius: 0 0 15px   0 ;
+
+#tableOnline2 {
+  border-radius: 0 0 15px 0;
 }
-#tableTarget1{
-  border-radius:  15px 0  0 0;
+
+#tableTarget1 {
+  border-radius: 15px 0 0 0;
 }
-#tableTarget2{
-  border-radius: 0 15px  0 0;
+
+#tableTarget2 {
+  border-radius: 0 15px 0 0;
 }
+
 .tableTitle {
   font-size: 0.9rem;
   font-weight: bold;
   color: #000000;
   padding: 10px;
   background: rgba(229, 244, 250, 0.71);
-  width:100px;
+  width: 100px;
 }
 
 .tableContent {
@@ -468,117 +500,108 @@ td {
   background: rgba(255, 255, 255, 0.47);
   color: #000000;
 }
-.infoTableCaption{
+
+.infoTableCaption {
   font-family: 'Gmarket Sans', sans-serif;
   font-weight: bold;
   font-size: 1.1rem;
-  padding: 0  0 3% 0;
+  padding: 0 0 3% 0;
 }
-.Menu-Wrap{
+
+.Menu-Wrap {
   height: 300px;
-  .Menu1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
+}
 
-    .certifiCard {
-      margin:10px;
-      width: 380px;
-      height: 220px;
-      background: rgba(255, 255, 255, 0.71);
-      border-radius: 10px;
-      color: #413090;
-      box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+.Menu1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
 
-    .cardContent{
-      padding: 10px;
-      border-radius: 0 10px 10px 0;
-      font-family: 'Gmarket Sans', sans-serif;
-    }
+.certifiCard {
+  margin: 10px;
+  width: 380px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.71);
+  border-radius: 10px;
+  color: #413090;
+  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+}
 
-    }
-    .btnWrap{
-      width: 100%;
-      height: 50px;
-      font-size: 1.1rem;
-      font-family: 'Gmarket Sans', sans-serif;
-      font-weight: bold;
+.cardContent {
+  padding: 10px;
+  border-radius: 0 10px 10px 0;
+  font-family: 'Gmarket Sans', sans-serif;
+}
 
+.btnWrap {
+  width: 100%;
+  height: 50px;
+  font-size: 1.1rem;
+  font-family: 'Gmarket Sans', sans-serif;
+  font-weight: bold;
+}
 
-    .Btns{
-      box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
-      height:50px; width: 30%;
-      color: #413090;
-      background: rgba(255,255,255,0.9);
-      border: 1px solid #413090;
-      border-radius:10px;
-
-      &:nth-child(3){
-        width: 50px;
-        border-radius: 50px;
-      }
-
-    }
-    }
-  }
-  .Menu2{
-    height: 100%;
-    border-radius: 10px ;
-    font-family: 'Gmarket Sans', sans-serif;
-    background: rgba(255, 255, 255, 0.71);
-    padding: 5% 2%;
-    margin-top: 10px;
-    box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.Menu2 {
+  height: 100%;
+  border-radius: 10px;
+  font-family: 'Gmarket Sans', sans-serif;
+  background: rgba(255, 255, 255, 0.71);
+  padding: 5% 2%;
+  margin-top: 10px;
+  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
-          /* ai 요약 */
-        .aiSummary{
-          box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
-          width:100%;
-          background : rgba(255,255,255,0.71);
-          height: 150px;
-          border-radius: 10px;
-          margin-top: 2%;
+.aiSummary {
+  box-shadow: 2px 2px 4px rgba(184, 182, 182, 0.3);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.71);
+  height: 150px;
+  border-radius: 10px;
+  margin-top: 2%;
+}
 
+.ai-sum {
+  font-size: 1.2rem;
+  font-family: 'Gmarket Sans', sans-serif;
+  font-weight: bold;
+  width: 90%;
+  height: 15%;
+  margin: 2% 5% 2% 3%;
+  color: #413090;
+}
 
-        .ai-sum{
-          font-size: 1.2rem;
-          font-family: 'Gmarket Sans', sans-serif;
-          font-weight: bold;
-          width: 90%;
-          height: 15%;
-          margin: 2% 5% 2% 3%;
-          color : #413090
-        }
-
-          .ai-content{
-            font-family: 'Gmarket Sans', sans-serif;
-            width : 90%;
-            height: 60%;
-            margin-left: 3%
-          }
-        }
+.ai-content {
+  font-family: 'Gmarket Sans', sans-serif;
+  width: 90%;
+  height: 60%;
+  margin-left: 3%;
+}
 
 .material-symbols-outlined {
   font-size: 150%;
 }
 
+#heart.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
 #heart.filled {
-  color: red;
+  color: #413090;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 /* 차트 이름*/
 .chartTitle {
   width:100%;
   height: 50px;
-  box-shadow: 2px 0 4px rgba(184, 182, 182, 0.3);
+  box-shadow: 2px 0 4px rgba(184, 182, 182,0.3);
   background:  rgba(255,255,255,0.71);
   border-radius: 8px 8px 0 0 ;
   padding:5%;
@@ -619,6 +642,7 @@ td {
 a {
   text-decoration: none;
 }
+
 
 /*미디어쿼리 800*/
 @media screen and (max-width: 800px) {
