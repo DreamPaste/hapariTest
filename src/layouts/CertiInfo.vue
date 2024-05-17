@@ -10,7 +10,7 @@
             <div class="cardImg col-6 flex items-center justify-center">icon</div>
             <!-- 자격증 카드 내용 -->
             <div class="cardContent col-6" style="padding: 10px; border-radius: 0 10px 10px 0; font-family: 'Gmarket Sans', sans-serif;">
-              <div class="text-h6" style="font-size: 1.6rem; margin-bottom: 20%;">{{ certName }}</div>
+              <div class="text-h6" style="font-size: 1.6rem; margin-bottom: 20%;">{{ certificationId }}</div>
               <div class="text-subtitle2" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15%;">{{ Name }}님</div>
               <div class="text-subtitle3" style="font-size: 0.8rem; font-weight: bold;">취득일자: {{ formattedDate }}</div>
             </div>
@@ -185,30 +185,37 @@
                     </q-card>
                   </div>
                 </template>
+
                 <!-- 탭 3일 때 -->
                 <template v-if="currentId === 'tab3'">
                   <div style="display: flex; justify-content: flex-end;">
-                    <button class="writeBtn" style="border-radius: 10px; background: rgba(96,121,255,0.9); height: 30px; width: 20%; border: 0;" @click="goToCertiReview">
-                      <span class="recepWord" style="color: white; font-size: 0.8rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold;">
+                    <button class="writeBtn" style="border-radius: 10px; background: rgba(96,121,255,0.9); margin-bottom: 10px; height: 30px; width: 20%; border: 0;" @click="goToCertiReview">
+                      <span class="recepWord" style="color: white; font-size: 0.8rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">
                         나도 후기 쓰러가기
                       </span>
                     </button>
                   </div>
                   <!-- 합격자 후기 목록 -->
-                  <div>
-                    <q-chat-message
-                      v-for="(index) in 30"
-                      :key="index"
-                      :name="'user' + index"
-                      :text="['이 자격증에 대한 후기 ' + index]"
-                      :sent="index % 2 === 1"
-                      :bg-color="index % 2 === 0 ? 'blue-1' : 'indigo-12'"
-                      :text-color="index % 2 === 0 ? 'indigo-10' : 'white'"
-                      style="font-size: 1rem;
-                      font-family: 'Gmarket Sans', sans-serif;
-                       font-weight: bold "
-                    />
-                  </div>
+
+                    <q-card flat bordered style="font-family: 'Gmarket Sans', sans-serif; font-weight: bold;  height :200px; margin-bottom: 10px; border-color: #413090;">
+                      <div class="reviewsWrap " >
+
+                          <!-- 자격증 후기 제목, 좋아요, 작성시간  -->
+                          <div class=" col-3 flex row " style=" height :100%; border-bottom: 1px solid #413090; font-size: 0.8rem;  ">
+                            <div class="col-6 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationId}}</div>
+                            <div class="col-3 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{createdAt}}</div>
+                            <div class="col-3 flex column items-center justify-center" >좋아요</div>
+                          </div>
+                          <!-- 뉴스기사 내용 -->
+                          <div class=" col-3 flex row items-center justify-start" style=" font-size: 1.3rem;  ">
+                            {{title}}
+                          </div>
+                        <div class=" col-6 flex row items-center justify-start" style=" font-size: 1.1rem; ">
+                          {{content}}
+                        </div>
+
+                      </div>
+                    </q-card>
                 </template>
               </section>
             </transition>
@@ -221,19 +228,35 @@
 
 <script>
 import Chart from "chart.js/auto";
-import axios from 'axios';
+import axios from "axios";
+
 
 export default {
   props: {
-    certName: {
+    certificationId: {
       type: String,
       required: true,
-
+      default: "정보처리기사"
     },
     Name: {
       type: String,
       required: true,
       default: "공민서"
+    },
+    createdAt: {
+      type: String,
+      required: true,
+      default: "2024.05.01"
+    },
+    title: {
+      type: String,
+      required: true,
+      default: "후기제목"
+    },
+    content: {
+      type: String,
+      required: true,
+      default: "합격자 후기입니다"
     },
 
   },
@@ -255,8 +278,21 @@ export default {
     this. renderBarCharts();
     this.renderLineCharts();
     this.typeContent();
+    this.fetchData();
   },
   methods: {
+    fetchData() {
+      axios
+        .get('/api/certifications')
+        .then((response) => {
+
+          const certificationId = response.data.certificationId;
+          console.log(certificationId);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     onItemClick() {
       console.log('Item clicked');
     },
