@@ -10,7 +10,7 @@
             <div class="cardImg col-6 flex items-center justify-center">icon</div>
             <!-- 자격증 카드 내용 -->
             <div class="cardContent col-6" style="padding: 10px; border-radius: 0 10px 10px 0; font-family: 'Gmarket Sans', sans-serif;">
-              <div class="text-h6" style="font-size: 1.6rem; margin-bottom: 20%;">{{ certificationId }}</div>
+              <div class="certiTItle" style="font-size: 1.5rem; margin-bottom: 20%;">{{ certificationId }}</div>
               <div class="text-subtitle2" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15%;">{{ Name }}님</div>
               <div class="text-subtitle3" style="font-size: 0.8rem; font-weight: bold;">취득일자: {{ formattedDate }}</div>
             </div>
@@ -192,30 +192,34 @@
                     <button class="writeBtn" style="border-radius: 10px; background: rgba(96,121,255,0.9); margin-bottom: 10px; height: 30px; width: 20%; border: 0;" @click="goToCertiReview">
                       <span class="recepWord" style="color: white; font-size: 0.8rem; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; ">
                         나도 후기 쓰러가기
+                        <!-- 연필 아이콘 -->
+                        <span class="material-symbols-outlined">
+                             edit
+                              </span>
                       </span>
                     </button>
                   </div>
-                  <!-- 합격자 후기 목록 -->
 
-                    <q-card flat bordered style="font-family: 'Gmarket Sans', sans-serif; font-weight: bold;  height :200px; margin-bottom: 10px; border-color: #413090;">
-                      <div class="reviewsWrap " >
+                  <!-- 합격자 후기 목록 -->
+                    <q-card flat bordered style="font-family: 'Gmarket Sans', sans-serif; font-weight: bold; width:100%; height :100%; margin-bottom: 10px; border-color: #413090;">
+                      <div class="reviewsWrap">
 
                           <!-- 자격증 후기 제목, 좋아요, 작성시간  -->
                           <div class=" col-3 flex row " style=" height :100%; border-bottom: 1px solid #413090; font-size: 0.8rem;  ">
                             <div class="col-6 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationId}}</div>
                             <div class="col-3 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{createdAt}}</div>
-                            <div class="col-3 flex column items-center justify-center" >좋아요</div>
+                            <div class="col-3 flex column items-center justify-center" >{{ userId }}</div>
                           </div>
                           <!-- 뉴스기사 내용 -->
-                          <div class=" col-3 flex row items-center justify-start" style=" font-size: 1.3rem;  ">
+                          <div class=" col-3 flex row items-center justify-start" style=" font-size: 1.3rem; margin-bottom: 20px  ">
                             {{title}}
                           </div>
                         <div class=" col-6 flex row items-center justify-start" style=" font-size: 1.1rem; ">
                           {{content}}
                         </div>
-
                       </div>
                     </q-card>
+
                 </template>
               </section>
             </transition>
@@ -229,6 +233,7 @@
 <script>
 import Chart from "chart.js/auto";
 import axios from "axios";
+import {api} from "boot/axios";
 
 
 export default {
@@ -258,6 +263,12 @@ export default {
       required: true,
       default: "합격자 후기입니다"
     },
+    userId: {
+      type: String,
+      required: true,
+      default: "bb7788"
+    },
+
 
   },
   data() {
@@ -270,24 +281,32 @@ export default {
       news_content: [],
       reviews: [],
       viewCounts: {}, // 빈 객체로 초기화
+      reviewList:0,
     };
   },
   mounted() {
     this.tab = this.list[0];
     this.currentId = this.list[0];
-    this. renderBarCharts();
+    this.renderBarCharts();
     this.renderLineCharts();
     this.typeContent();
-    this.fetchData();
+    this.fetchData(this.userId, this.reviewList);
   },
   methods: {
-    fetchData() {
-      axios
-        .get('/api/certifications')
+    fetchData(userId, page) {
+      console.log(userId);
+      const res= api.get(`/api/certifications/reviews/user/${userId}?page=${page}`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMDc4ODQsImV4cCI6MTcxNjEwODQ4NH0.WfJzcOdwqpW3qtGiUweS2bZQ2PSdVVT4yDFTRUdg-Ns`,
+          userId: userId,
+        }
+      })
         .then((response) => {
+            if (response && response.status ===200){
+              const data=response.data;
+              console.log(data);
+            }
 
-          const certificationId = response.data.certificationId;
-          console.log(certificationId);
         })
         .catch((err) => {
           console.log(err);
@@ -622,7 +641,7 @@ td {
 }
 
 .material-symbols-outlined {
-  font-size: 150%;
+  font-size: 130%;
 }
 
 #heart.material-symbols-outlined {
