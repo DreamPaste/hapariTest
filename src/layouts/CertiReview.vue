@@ -45,44 +45,76 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import {ref} from 'vue'
-import axios from 'axios'
 import {useRouter} from 'vue-router'
+import {api} from "boot/axios";
 
-const router = useRouter()
 
-const title = ref('')
-const contents = ref('')
-const selectedCertification = ref('')
-const selectedCertificationLabel = ref('자격증 선택해주세요')
 
-const goBack = () => {
-  router.go(-1)
-}
+export default {
+    setup() {
+       return{
+         router : useRouter(),
+         title : ref(''),
+         contents : ref(''),
+         selectedCertification : ref(''),
+        selectedCertificationLabel : ref('자격증 선택해주세요')
+    }
+  },
+  props:{
+    certificationId: {
+      type: Number,
+      require: true,
+    },
+    userId :{
+      type: String,
+      require: true,
+    }
+  },
+  methods:{
+    goBack(){
+      router.go(-1)
 
-const saveReview = () => {
-  const reviews = {
-    title: title.value,
-    contents: contents.value,
-    certificationId: selectedCertification.value,
+    },
+    saveReview(){
+      const reviews = {
+        title: this.title.value,
+        contents: this.contents.value,
+        userId: this.userId,
+      }
+      api.post(`/api/certifications/${this.certificationId}/reviews`, reviews, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMTM4MDAsImV4cCI6MTcxNjExNDQwMH0.DRs9e2BNnq10Jadz5rPD3VAV04V3hqwJ85KdmHHOZbM
+`,
+          userId: this.userId,
+        }})
+        .then(response => {
+          if(response && response.status===200){
+            console.log('Review saved:', response.data.msg)
+            alert('Review saved successfully!')
+          }
+          else{
+            console.log("응답은 성공, but 오류")
+          }
+        })
+        .catch(error => {
+          console.error('There was an error saving the review:', error)
+
+          alert('Error saving review. Please try again,',error.response.data.userId+"님!")
+        })
+
+    },
+    selectCertification(certification){
+      selectedCertification.value = certification
+      selectedCertificationLabel.value = certification
+    }
   }
 
-  axios.post('http://localhost:8080/reviews', reviews)
-    .then(response => {
-      console.log('Review saved:', response.data)
-      alert('Review saved successfully!')
-    })
-    .catch(error => {
-      console.error('There was an error saving the review:', error)
-      alert('Error saving review. Please try again.')
-    })
 }
 
-const selectCertification = (certification) => {
-  selectedCertification.value = certification
-  selectedCertificationLabel.value = certification
-}
+
+
 </script>
 
 <style scoped lang="scss">

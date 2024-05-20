@@ -239,9 +239,9 @@ import {api} from "boot/axios";
 export default {
   props: {
     certificationId: {
-      type: String,
+      type: Number,
       required: true,
-      default: "정보처리기사"
+      default: 1,
     },
     Name: {
       type: String,
@@ -282,6 +282,7 @@ export default {
       reviews: [],
       viewCounts: {}, // 빈 객체로 초기화
       reviewList:0,
+
     };
   },
   mounted() {
@@ -297,7 +298,8 @@ export default {
       console.log(userId);
       const res= api.get(`/api/certifications/reviews/user/${userId}?page=${page}`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMDc4ODQsImV4cCI6MTcxNjEwODQ4NH0.WfJzcOdwqpW3qtGiUweS2bZQ2PSdVVT4yDFTRUdg-Ns`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMTM4MDAsImV4cCI6MTcxNjExNDQwMH0.DRs9e2BNnq10Jadz5rPD3VAV04V3hqwJ85KdmHHOZbM
+`,
           userId: userId,
         }
       })
@@ -334,7 +336,7 @@ export default {
       }
     },
     goToCertiReview() {
-      this.$router.push(name='CertiReview');
+      this.$router.push({name:'CertiReview', params: {certificationId: this.certificationId ,userId:this.userId}});
     },
     fillHeart() {
       document.getElementById('heart').addEventListener('click', function() {

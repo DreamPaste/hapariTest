@@ -7,8 +7,11 @@ routes = [
 
   { path: '/CertiReview',
     name: 'CertiReview',
-    component: () => import('src/layouts/CertiReview.vue')
+    component: () => import('src/layouts/CertiReview.vue'),
+    props: true
   }
+
+
 ];
 
 export default routes;
