@@ -46,15 +46,30 @@
 </template>
 
 <script>
-import {ref} from 'vue'
-import {useRouter} from 'vue-router'
-import {api} from "boot/axios";
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { api } from "boot/axios";
 
 export default {
-  setup() {
+  props: {
+    certificationId: {
+      type: Number,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    }
+  },
+  setup(props) {
     const router = useRouter()
     const title = ref('')
     const contents = ref('')
+    const selectedCertificationLabel = ref(props.certificationId)
+
+    const selectCertification = (cert) => {
+      selectedCertificationLabel.value = cert
+    }
 
     const goBack = () => {
       router.go(-1)
@@ -64,12 +79,12 @@ export default {
       const reviews = {
         title: title.value,
         contents: contents.value,
-        userId: this.userId,
+        userId: props.userId,
       }
-      api.post(`/api/certifications/${this.certificationId}/reviews`, reviews, {
+      api.post(`/api/certifications/${selectedCertificationLabel.value}/reviews`, reviews, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMTM4MDAsImV4cCI6MTcxNjExNDQwMH0.DRs9e2BNnq10Jadz5rPD3VAV04V3hqwJ85KdmHHOZbM`,
-          userId: this.userId,
+          userId: props.userId,
         }
       })
         .then(response => {
@@ -87,21 +102,12 @@ export default {
     }
 
     return {
-      router,
       title,
       contents,
+      selectedCertificationLabel,
+      selectCertification,
       goBack,
       saveReview
-    }
-  },
-  props: {
-    certificationId: {
-      type: Number,
-      required: true,
-    },
-    userId: {
-      type: String,
-      required: true,
     }
   }
 }

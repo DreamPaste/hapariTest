@@ -201,10 +201,11 @@
                   </div>
 
                   <!-- 합격자 후기 목록 -->
+                  <div class="reviewWrap">
                     <q-card flat bordered style="font-family: 'Gmarket Sans', sans-serif; font-weight: bold; width:100%; height :100%; margin-bottom: 10px; border-color: #413090;">
-                      <div class="reviewsWrap">
+                      <div class="reviewsList">
 
-                          <!-- 자격증 후기 제목, 좋아요, 작성시간  -->
+                          <!-- 자격증 후기 제목, 아이디, 작성시간  -->
                           <div class=" col-3 flex row " style=" height :100%; border-bottom: 1px solid #413090; font-size: 0.8rem;  ">
                             <div class="col-6 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationId}}</div>
                             <div class="col-3 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{createdAt}}</div>
@@ -219,7 +220,15 @@
                         </div>
                       </div>
                     </q-card>
-
+                    <div class="goodBtn flex items-center justify-center">
+                  <q-btn icon = "thumb_up" text-color="black" label="도움이 돼요"
+                         style="border: 1px solid #413090;
+                          color: #413090;
+                          font-family: 'Gmarket Sans', sans-serif;
+                           font-weight: bold;
+                          font-size:1rem"/>
+                    </div>
+                  </div>
                 </template>
               </section>
             </transition>
