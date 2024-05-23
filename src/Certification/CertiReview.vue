@@ -25,6 +25,8 @@
             </q-item>
           </q-list>
         </q-btn-dropdown>
+
+
       </div>
 
       <!-- 타이틀 입력 -->
@@ -46,9 +48,9 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { api } from "boot/axios";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { api } from 'boot/axios';
 
 export default {
   props: {
@@ -62,56 +64,63 @@ export default {
     }
   },
   setup(props) {
-    const router = useRouter()
-    const title = ref('')
-    const contents = ref('')
-    const selectedCertificationLabel = ref(props.certificationId)
+    const router = useRouter();
+    const title = ref('');
+    const contents = ref('');
+    const selectedCertificationId = ref(props.certificationId); // 초기 자격증 아이디 설정
+    const selectedCertificationLabel = ref(`자격증${props.certificationId}`); // 초기 자격증 라벨 설정
 
-    const selectCertification = (cert) => {
-      selectedCertificationLabel.value = cert
-    }
+    const selectCertification = (label, certificationId) => {
+      selectedCertificationLabel.value = label;
+      selectedCertificationId.value = certificationId;
+      console.log(`Selected Certification ID: ${certificationId}`);
+      console.log(`Selected Certification Label: ${label}`);
+    };
 
     const goBack = () => {
-      router.go(-1)
-    }
+      router.go(-1);
+    };
 
     const saveReview = () => {
       const reviews = {
         title: title.value,
         contents: contents.value,
         userId: props.userId,
-      }
-      api.post(`/api/certifications/${selectedCertificationLabel.value}/reviews`, reviews, {
+      };
+      api.post(` /api/certifications/{certificationId}/reviews`, reviews, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYjc3ODgiLCJpc3MiOiJwdWxsZXkiLCJpYXQiOjE3MTYxMTM4MDAsImV4cCI6MTcxNjExNDQwMH0.DRs9e2BNnq10Jadz5rPD3VAV04V3hqwJ85KdmHHOZbM`,
+          Authorization: `Bearer`,
           userId: props.userId,
         }
       })
         .then(response => {
           if (response && response.status === 200) {
-            console.log('Review saved:', response.data.msg)
-            alert('Review saved successfully!')
+            console.log('Review saved:', response.data.msg);
+            alert('후기 저장에 성공하였습니다.');
           } else {
-            console.log("응답은 성공, but 오류")
+            console.log("응답은 성공, but 오류");
           }
         })
         .catch(error => {
-          console.error('There was an error saving the review:', error)
-          alert('Error saving review. Please try again,' + error.response.data.userId + "님!")
-        })
-    }
+          console.error('There was an error saving the review:', error);
+          alert('게시글 저장에 실패했습니다.' + error.response.data.userId + "님!");
+        });
+    };
 
     return {
       title,
       contents,
-      selectedCertificationLabel,
       selectCertification,
       goBack,
-      saveReview
-    }
+      saveReview,
+      selectedCertificationId,
+      selectedCertificationLabel,
+    };
   }
-}
+};
 </script>
 
+<style scoped lang="scss">
+</style>
 <style scoped lang="scss">
 </style>

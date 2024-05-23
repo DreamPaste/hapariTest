@@ -2,7 +2,7 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'http://haepari.co.kr:8080' });
+const api = axios.create({ baseURL: 'https://haepari.co.kr' });
 
 
 export default boot(({ app }) => {
