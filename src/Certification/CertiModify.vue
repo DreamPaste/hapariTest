@@ -12,7 +12,6 @@
         <q-card class="my-card bg-secondary text-white">
           <q-card-section>
             <div class="certiTItle">{{ certificationId }}</div>
-
           </q-card-section>
 
         </q-card>

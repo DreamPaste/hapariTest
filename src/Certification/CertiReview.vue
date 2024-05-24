@@ -1,47 +1,45 @@
 <template>
   <div class="container" style="background: #f8f8f8; display: flex; justify-content: center; margin: 100px 0;">
     <!-- 전체 감싸는 컨테이너 -->
-    <div class="backgroundReview items-center justify-center" style="width:1000px; height: 100%; background: rgba(255, 255, 255, 0.71);">
+    <div class="backgroundReview items-center justify-center" style="width: 1000px; height: 100%; background: rgba(255, 255, 255, 0.71);">
       <!-- 페이지 타이틀 -->
       <div class="col-3 flex row" style="width: 100%; color: #413090; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1.9rem; padding: 5%; margin-bottom: 10px">
         자격증 후기 입력
       </div>
 
-      <!-- 자격증 선택 -->
+      <!-- 자격증 아이디 표시 -->
       <div class="col-1 flex row" style="padding: 0 50px; margin-bottom: 30px;">
-        <q-btn-dropdown push no-caps text-color="indigo-3" :label="selectedCertificationLabel" style="width: 25%">
-          <!-- 공유 드롭다운 -->
-          <q-list>
-            <q-item clickable v-close-popup @click="selectCertification('자격증1')">
-              <q-item-section>
-                <q-item-label>자격증1</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-close-popup @click="selectCertification('자격증2')">
-              <q-item-section>
-                <q-item-label>자격증2</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-
-
+        <q-card class="my-card">
+          <q-card-section>
+            자격증 ID: {{ certificationId }}
+          </q-card-section>
+        </q-card>
       </div>
 
       <!-- 타이틀 입력 -->
       <div class="col-1 flex row" style="padding: 0 50px; margin-bottom: 30px;">
-        <q-input v-model="title" filled autogrow label="title" bg-color="indigo-1" style="width:100%; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1.2rem;" />
+        <q-input v-model="title" filled autogrow label="title" bg-color="indigo-1" style="width: 100%; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1.2rem;" />
       </div>
+
       <!-- 내용 입력 -->
-      <div class="col-3 flex row" style="width: 100%; padding: 0 50px; margin-bottom:200px">
-        <q-input v-model="contents" filled type="textarea" label="review" bg-color="indigo-1" style="width:100%; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1.2rem;" />
+      <div class="col-3 flex row" style="width: 100%; padding: 0 50px; margin-bottom: 200px;">
+        <q-input v-model="contents" filled type="textarea" label="review" bg-color="indigo-1" style="width: 100%; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1.2rem;" />
       </div>
+
       <div class="col-3 flex row items-center justify-center">
         <!-- 저장 버튼 -->
-        <q-btn @click="saveReview" style="border-radius: 10px; padding:10px; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1rem; border: 1px solid #413090; color: #413090; width: 100px; height: 100%; margin-right: 2%" label="저장"/>
+        <q-btn @click="saveReview"
+               style="border-radius: 10px;
+               padding: 10px;
+               font-family: 'Gmarket Sans', sans-serif;
+               font-weight: bold; font-size: 1rem;
+               border: 1px solid #413090; color: #413090; width: 100px; height: 100%; margin-right: 2%;" label="저장" />
         <!-- 이전 버튼 -->
-        <q-btn @click="goBack" style="border-radius: 10px; padding:10px; font-family: 'Gmarket Sans', sans-serif; font-weight: bold; font-size: 1rem; border: 1px solid #413090; color: #413090; width: 100px; height: 100%" label="이전으로"/>
+        <q-btn @click="goBack"
+               style="border-radius: 10px;
+               padding: 10px;
+               font-family: 'Gmarket Sans', sans-serif;
+               font-weight: bold; font-size: 1rem; border: 1px solid #413090; color: #413090; width: 100px; height: 100%;" label="이전으로" />
       </div>
     </div>
   </div>
@@ -61,66 +59,50 @@ export default {
     userId: {
       type: String,
       required: true,
-    }
+    },
   },
   setup(props) {
     const router = useRouter();
     const title = ref('');
     const contents = ref('');
-    const selectedCertificationId = ref(props.certificationId); // 초기 자격증 아이디 설정
-    const selectedCertificationLabel = ref(`자격증${props.certificationId}`); // 초기 자격증 라벨 설정
-
-    const selectCertification = (label, certificationId) => {
-      selectedCertificationLabel.value = label;
-      selectedCertificationId.value = certificationId;
-      console.log(`Selected Certification ID: ${certificationId}`);
-      console.log(`Selected Certification Label: ${label}`);
-    };
 
     const goBack = () => {
       router.go(-1);
     };
 
     const saveReview = () => {
-      const reviews = {
+      const reviewData = {
         title: title.value,
         contents: contents.value,
         userId: props.userId,
       };
-      api.post(` /api/certifications/{certificationId}/reviews`, reviews, {
+      api.post(`/api/certifications/${props.certificationId}/reviews`, reviewData, {
         headers: {
-          Authorization: `Bearer`,
-          userId: props.userId,
+          Authorization: `Bearer `,
         }
       })
         .then(response => {
-          if (response && response.status === 200) {
-            console.log('Review saved:', response.data.msg);
+          if (response && response.data) {
             alert('후기 저장에 성공하였습니다.');
           } else {
-            console.log("응답은 성공, but 오류");
+            alert('후기 저장에 실패하였습니다.');
           }
         })
         .catch(error => {
-          console.error('There was an error saving the review:', error);
-          alert('게시글 저장에 실패했습니다.' + error.response.data.userId + "님!");
+          alert('게시글 저장에 실패했습니다: ' + error.response.data.message);
         });
     };
 
     return {
       title,
       contents,
-      selectCertification,
       goBack,
       saveReview,
-      selectedCertificationId,
-      selectedCertificationLabel,
     };
   }
 };
 </script>
 
-<style scoped lang="scss">
-</style>
-<style scoped lang="scss">
+<style scoped>
+/* 스타일 정의 */
 </style>
