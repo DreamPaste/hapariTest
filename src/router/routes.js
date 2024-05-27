@@ -1,9 +1,14 @@
 let routes;
 routes = [
   {
-    path: '/',
+    path: '/CertiInfo',
     name: 'CertiInfo',
     component: () => import('src/Certification/CertiInfo.vue'),
+  },
+  {
+    path: '/',
+    name: 'CertificationMain',
+    component: () => import('src/Certification/CertificationMain.vue'),
   },
  {
    path: '/CertiReview',

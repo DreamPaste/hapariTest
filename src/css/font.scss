@@ -1,0 +1,36 @@
+@mixin font-face($font-family, $font-weight, $font-style, $file-path, $file-name) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    src: url('#{$file-path}/#{$file-name}.woff2') format('woff2'),
+    url('#{$file-path}/#{$file-name}.woff') format('woff');
+  }
+}
+
+// GmarketSans Regular 폰트 정의
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: normal;
+  font-style: normal;
+  src: url('src/assets/fonts/GmarketSans/GmarketSansTTFMedium.ttf') format('truetype'),
+  url('src/assets/fonts/GmarketSans/GmarketSansMedium.otf') format('opentype');
+}
+
+// GmarketSans Light 폰트 정의
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: 300;
+  font-style: normal;
+  src: url('src/assets/fonts/GmarketSans/GmarketSansTTFLight.ttf') format('truetype'),
+  url('src/assets/fonts/GmarketSans/GmarketSansLight.otf') format('opentype');
+}
+
+// GmarketSans Bold 폰트 정의
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: bold;
+  font-style: normal;
+  src: url('src/assets/fonts/GmarketSans/GmarketSansTTFBold.ttf') format('truetype'),
+  url('src/assets/fonts/GmarketSans/GmarketSansBold.otf') format('opentype');
+}
