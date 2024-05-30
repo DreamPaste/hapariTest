@@ -12,10 +12,10 @@
         <!-- 공모전 날짜, 버튼 묶음 -->
         <div class="col-6 flex row items-center justify-start" style="width:100%; padding : 0 0 1% 0;">
           <div class="col-6 flex row items-center justify-start"  style="width: 50%;">
-          <q-chip class="card1 flex items-center justify-center bg-blue-1 text-blue-7" style="padding:6px 20px; margin-right: 2%;  font-size:1rem; width:15%; height:10%">
+          <q-chip class="chip flex items-center justify-center bg-blue-1 text-blue-7" style="padding:6px 20px; margin-right: 2%;  font-size:1rem; width:85px; height:35px">
             접수중
           </q-chip>
-          <q-chip class="card2 my-card flex items-center justify-center bg-red-1 text-red-4" style="padding:6px 20px;  font-size:1rem; width:15%; height:10%">
+          <q-chip class="chip my-card flex items-center justify-center bg-red-1 text-red-4" style="padding:6px 20px;  font-size:1rem;  width:80px; height:35px">
 
             D - 9
           </q-chip>
@@ -25,7 +25,7 @@
         <div class="col-6 flex row items-center justify-end" style="width: 50%; "  >
           <!-- 접수 버튼 -->
           <q-btn class="contestBtn no-shadow bg-blue-1 text-blue-9 text-bold" icon="navigation" label="접수하기" flat
-                 style="width: 28%;
+                 style="width: 150px;
                    border-radius: 10px;
                    font-size : 1.1rem;
               margin-right :2%;"/>
@@ -67,13 +67,13 @@
       </div>
 
       <!-- 공모전 포스터, 표 묶음 -->
-      <div class="col-4 flex row items-center justify-between" style="width: 100%; height: 550px;">
+      <div class="contest-Poster-table col-4 flex row items-center justify-center" style="width: 100%; height: 550px;">
         <!-- 공모전 포스터 -->
-        <div class="contest-Poster col-5 flex row items-center justify-center" style="width: 35%; height: 95%; ">
+        <div class="contest-Poster col-5 flex row items-center justify-center" style="width: 35%; height: 95%; margin-right:35px;">
           <q-img src="https://cdn.quasar.dev/img/parallax1.jpg" style="width: 100%; height: 90%; " />
         </div>
         <!-- 공모전 표 -->
-        <div class="contest-Table col-7 flex row items-center justify-center"  style="width: 58%; height: 95%; " >
+        <div class="contest-Table col-7 flex row items-center justify-center"  style="width: 58%; height: 95%; margin-left:35px; " >
 
               <InfoTable />
 
@@ -212,19 +212,21 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
-.contest-Poster{
-  display: none;
-}
+  .contest-Poster {
+    display: none;
+  }
 
-.contestBtn{
+  .contestBtn {
     font-size: 0.8rem !important;
+  }
+  #heart.material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  .contest-table {
+    width: 100%
+  }
+
+
 }
-#heart.material-symbols-outlined {
-    font-size:20px;
-}
-
-
-
-}
-
 </style>

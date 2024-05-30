@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 90% ; width : 100%">
+  <div class="InfoTable" style="height: 90% ; width : 100%">
   <table>
     <tr >
       <td class="tableTitle bg-blue-1 text-blue-9" id="tableTarget1" >대상</td>
@@ -61,7 +61,6 @@ td {
   color: #4360c4;
   padding: 2px;
   background: rgb(238, 245, 255);
-
 }
 
 .tableContent {
@@ -75,8 +74,27 @@ td {
 }
 
 @media screen and (max-width: 800px) {
+  .InfoTable{
+    width:100%
+  }
+  .tableTitle {
+    font-size:1.1rem;
+    font-weight: bold;
+    color: #4360c4;
+    padding: 2px;
+    background: rgb(238, 245, 255);
+    width:100%;
+  }
 
+  .tableContent {
 
+    height: 100%;
+    font-size: 1rem;
+    color: #4360c4;
+    padding: 15px;
+    background: rgba(241, 247, 255, 0.75);
+
+  }
 
 }
 
