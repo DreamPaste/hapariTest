@@ -8,7 +8,7 @@ routes = [
   },
   //자격증 메인페이지
   {
-    path: '/',
+    path: '/CertificationMain',
     name: 'CertificationMain',
     component: () => import('src/Certification/CertificationMain.vue'),
   },
@@ -61,6 +61,18 @@ routes = [
     path: '/contestInfo',
     name: 'contestInfo',
     component: () => import('src/Contest/contestInfo.vue')
+  },
+  //스터디 상세페이지
+  {
+    path: '/',
+    name: 'StudyInfo',
+    component: () => import('src/Study/StudyInfo.vue')
+  },
+  //스터디그룹 상세 내용
+  {
+    path: '/StudyDetail',
+    name: 'StudyDetail',
+    component: () => import('src/Study/StudyDetail.vue')
   },
 
 ];
