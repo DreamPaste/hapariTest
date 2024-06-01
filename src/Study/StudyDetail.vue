@@ -80,4 +80,13 @@ td{
   font-size : 1rem;
   margin:2% 0;
 }
+
+@media screen and (max-width: 800px) {
+  .ContestTableTitle{
+    font-size : 1rem;
+  }
+  .DetailContent{
+    font-size : 0.9rem;
+  }
+}
 </style>
