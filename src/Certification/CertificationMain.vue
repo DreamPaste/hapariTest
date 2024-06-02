@@ -20,7 +20,7 @@
       <div class="col-5 row flex align-center justify-center" style=" width:100%; height:700px">
         <!-- 실시간 -->
         <div class="col-4 column flex align-center justify-center" >
-          <CertiRealTime/>
+          <CertiRealTime />
         </div>
 
         <!--  달력, 추천자격증 묶음 -->
@@ -34,7 +34,7 @@
               <q-card-section horizontal >
                 <q-card-section class="col-4 column" style="height:180px;">
                   <!-- 아이콘 사야함 !!! -->
-                  <img src = "src/assets/Image/컴퓨터.jpg" alt="아이콘" style="width:86%; height: 100%"/>
+                  <img src = "src/assets/Image/컴퓨터.png" alt="아이콘" style="width:86%; height: 100%"/>
                 </q-card-section>
 
                 <q-separator vertical />
@@ -63,7 +63,8 @@
 
             <div class="col-6 column flex align-center justify-center" style="width :47% ; padding:1%">
               <q-card flat bordered Horizontal class="flex align-center justify-center" style="height: 95%; border-radius: 10px; padding:2%; ">
-                <q-card-section class="col-3 row flex align-center justify-center text-blue-9 text-bold"  style="font-size: 1.5rem; margin:2%; width : 80% ; height :70px; border-bottom:1px solid rgba(185,185,185,0.55)" >
+                <q-card-section class="col-3 row flex align-center justify-center text-blue-9 text-bold"
+                                style="font-size: 1.5rem; margin:2%; width : 80% ; height :70px; border-bottom:1px solid rgba(185,185,185,0.55)" >
                   <img src = "src/assets/Image/경고등.jpg" alt="경고등" style="width:14%; height: 80%; "/>
                   &nbsp; 접수중인 자격증
 
@@ -104,11 +105,15 @@
           </q-card>
         </div>
         <div class="col-8 column flex align-center justify-center" style="padding:2%">
-          <q-card flat bordered style="width: 100%; height :100%; border-radius: 10px; padding:2%">
-            <q-card-section class="col-2 row text-bold text-blue-9" style="width: 100%;font-size: 1.8rem">
-              정보플러스 &nbsp;
-              <img src = "src/assets/Image/플러스.jpg" alt="플러스" style="width:7%; height: 7%"/>
+          <q-card flat bordered style="width: 100%; height: 100%; border-radius: 10px; padding: 2%;">
+            <q-card-section class="col-2 row" style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; width: 60%;">
+                <span class="text-bold text-blue-9" style="font-size: 1.8rem;">정보 PLUS</span>
+                <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 12%; height: 12%; margin-left: 10px;" />
+              </div>
+              <q-btn flat class="bg-blue-1 text-blue-9" style="border-radius:18px " @click="goInfoPlus">더보기</q-btn>
             </q-card-section>
+
             <!-- 정보플러스 1 -->
             <q-card-section class="col-5 row " style="width: 100%;font-size: 1.3rem; margin:2%">
               <q-card-section horizontal >
@@ -161,35 +166,60 @@
   </div>
 
   </template>
-  <script>
-  import CertiRealTime from 'src/Certification/CertiRealTime.vue';
-  import { ref } from 'vue'
-  import CertiDate from "src/Certification/CertiDate.vue";
-  import CertiMainHorizontal from "src/Certification/CertiMainHorizontal.vue";
+<script>
+import CertiRealTime from 'src/Certification/CertiRealTime.vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import CertiDate from 'src/Certification/CertiDate.vue';
+import CertiMainHorizontal from 'src/Certification/CertiMainHorizontal.vue';
+import {api} from "boot/axios";
 
+export default {
 
-  export default {
-    components: {
-      CertiMainHorizontal,
-      CertiDate,
-      CertiRealTime,
-    },
-    setup() {
-      const text = ref('');
-      const certifications = ref([
-        { label: '정보처리기사', checked: false },
-        { label: '정보처리기사', checked: false },
-        { label: '정보처리기사', checked: false },
-        { label: '정보처리기사', checked: false }
-      ]);
+  components: {
+    CertiMainHorizontal,
+    CertiDate,
+    CertiRealTime,
+  },
+  setup() {
+    const router = useRouter();
+    const text = ref('');
+    const certifications = ref([
+      { label: '정보처리기사', checked: false },
+      { label: '정보처리기사', checked: false },
+      { label: '정보처리기사', checked: false },
+      { label: '정보처리기사', checked: false },
+    ]);
 
-      return {
-        text,
-        certifications,
-      };
-    }
+    const goInfoPlus = () => {
+      router.push({ name: 'InfoPlus' });
+    };
+
+    const InfoCerti = async () => {
+      console.log("자격증 테스트중");
+
+      try {
+        const response = await api.get(`/api/certification/${this.certificationName}`);
+        if (response && response.status === 200) {
+          const certificationCode = response.certificationCode;
+          console.log('테스트 결과:', certificationCode);
+
+        }
+      } catch (error) {
+        console.error('테스트 결과 오류:', error.response.msg);
+      }
+    };
+
+    return {
+      text,
+      certifications,
+      goInfoPlus,
+      InfoCerti,
+    };
   }
-  </script>
+};
+</script>
+
 
 <style scoped lang="scss">
 

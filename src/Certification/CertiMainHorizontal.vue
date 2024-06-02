@@ -18,7 +18,7 @@ export default defineComponent({
       new Chart(canvas.value, {
         type: 'bar',
         data: {
-          labels: ['January',  'June', 'July'],
+          labels: ['자격증1',  '자격증2', '자격증3'],
 
           datasets: [
             {

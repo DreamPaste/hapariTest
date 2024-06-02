@@ -48,7 +48,7 @@
       </tr>
     </table>
 
-    <q-btn flat class="StudyTag bg-light-blue-1 text-light-blue-9" style="border-radius: 30px"> # 공모전</q-btn>
+    <q-btn outline rounded class="text-blue-10 "> # 공모전</q-btn>
   </q-card>
 </div>
 </template>

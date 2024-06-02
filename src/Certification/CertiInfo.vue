@@ -7,7 +7,7 @@
 
         <!-- 자격증 이름 -->
         <div class="Certification-Name col-6 flex row items-center justify-start text-indigo-10" style="width: 100%;">
-  정보처리기사 {{certName}}
+ {{certificationName}}
           </div>
 
       <!-- 자격증 날짜 , 버튼 묶음-->
@@ -248,47 +248,19 @@
 import Chart from "chart.js/auto";
 import { api } from "boot/axios";
 import { ref } from "vue";
-
+import {useRoute} from "vue-router";
 
 export default {
-  props: {
-
-    certificationCode: {
-      type: Number,
-      required: true,
-      default: 38,
-    },
-    Name: {
-      type: String,
-      required: true,
-      default: "공민서",
-    },
-    createdAt: {
-      type: String,
-      required: true,
-      default: "2024.05.01",
-    },
-    title: {
-      type: String,
-      required: true,
-      default: "후기제목",
-    },
-    content: {
-      type: String,
-      required: true,
-      default: "합격자 후기입니다",
-    },
-    userId: {
-      type: String,
-      required: true,
-      default: "testId",
-    },
+  setup(){
+    const route = useRoute();
+    const certificationName = route.params.certificationName;
+    return{ certificationName};
   },
   data() {
+
     return {
       formattedDate: new Date().toLocaleDateString(),
       isLiked: false,
-      aiSummary: "",
       tab: ref("tab1"),
       currentId: ref("tab1"),
       list: ["tab1", "tab2", "tab3"],
@@ -302,27 +274,41 @@ export default {
       options: [
         'url복사',
         '쪽지로 공유',
-      ]
+      ],
+      qualification: "",
+      organizer: "",
+      registrationLink: "",
+      aiSummary:"",
+
     };
   },
 
   mounted() {
+
     this.renderBarCharts();
     this.renderLineCharts();
     this.typeContent();
-    this.fetchData(this.certificationCode, this.reviewList);
+    this.CertificationInfo();
+    console.log(this.certiName );
   },
   methods: {
-    async fetchData(certificationCode, page) {
-      console.log('test!!');
+    async CertificationInfo() {
+      console.log("자격증 정보 불러오기 테스트" );
+
       try {
-        const response = await api.get(`/api/certifications/${certificationCode}/reviews?page=${page}`);
+        const response = await api.get( `/api/certification/${this.certiName}`);
         if (response && response.status === 200) {
-          const data = response.data;
-          console.log("테스트중", data);
+          const { qualification, organizer, registrationLink } = response.data;
+          this.qualification = qualification;
+          this.organizer = organizer;
+          this.registrationLink = registrationLink;
+          console.log('결과1', this.qualification);
+          console.log('결과2', this.organizer);
+          console.log('결과3', this.registrationLink);
+
         }
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.error('테스트 결과 오류:', error.response.data.msg);
       }
     },
 

@@ -5,12 +5,14 @@ routes = [
     path: '/CertiInfo',
     name: 'CertiInfo',
     component: () => import('src/Certification/CertiInfo.vue'),
+    props: true
   },
   //자격증 메인페이지
   {
-    path: '/CertificationMain',
+    path: '/',
     name: 'CertificationMain',
     component: () => import('src/Certification/CertificationMain.vue'),
+    props: true
   },
   //자격증 실시간검색어
   {
@@ -44,6 +46,13 @@ routes = [
   component: () => import('src/Certification/CertiModify.vue'),
   props: true
 },
+  //자격증메인페이지에서  정보 플러스 더보기 클릭시 상세페이지
+  {
+    path: '/InfoPlus',
+    name: 'InfoPlus',
+    component: () => import('src/Certification/InfoPlus.vue'),
+    props: true
+  },
   //공모전 테이블
   {
     path: '/InfoTable',
@@ -64,7 +73,7 @@ routes = [
   },
   //스터디 상세페이지
   {
-    path: '/',
+    path: '/StudyInfo',
     name: 'StudyInfo',
     component: () => import('src/Study/StudyInfo.vue')
   },
