@@ -5,12 +5,11 @@
         <img src="src/assets/Image/순위.jpg" alt="순위" style="width:15%; height: 15%; margin-right:5%" />
         실시간 검색어
       </div>
-      <!-- 실시간 검색어의 자격증순서 묶음-->
       <div class="flex align-center justify-center" style="font-size: 1.2rem; width:90%; margin-left:5%">
         <div v-for="(certification, index) in certifications" :key="index" class="RealTime-CertName">
-         <span class="text-bold" @click="router.push({ name: 'CertiInfo', params: { certificationName: certification.name } })">
-  {{ certification.name }}
-</span>
+          <span class="text-bold" @click="goToCertiInfo(certification.name)">
+            {{ certification.name }}
+          </span>
           <q-chip :class="certification.class">{{ certification.rank }}</q-chip>
         </div>
       </div>
@@ -19,26 +18,22 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
-import {useRouter} from 'vue-router';
-import certiInfo from "src/Certification/CertiInfo.vue";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const goCertiInfo = (certificationName) => {
-  console.log("gdgd",certificationName);
-  console.log(typeof certificationName);
-  router.push({name: 'CertiInfo', params: {certificationName : certificationName}});
+const goToCertiInfo = (certificationName) => {
+  router.push({name: 'CertiInfo', params: {certificationName}})
+  console.log("전달 확인 :", certificationName);
 };
 
 const certifications = ref([
   {label: '정보처리기사', rank: '▲ 3', class: 'bg-red-1 text-red-9', name: '정보처리기사'},
   {label: '네트워크', rank: '▼ 2', class: 'bg-blue-2 text-blue-9', name: '네트워크'},
   {label: '리눅스', rank: '▲ 1', class: 'bg-red-1 text-red-9', name: '리눅스'},
-  // 추가 자격증 정보를 필요에 따라 여기에 추가할 수 있습니다.
+  // 추가 자격증 정보를 여기에 추가할 수 있습니다.
 ]);
-
-
 </script>
 
 <style scoped lang="scss">

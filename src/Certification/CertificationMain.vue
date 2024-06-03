@@ -201,15 +201,12 @@ export default {
       try {
         const response = await api.get(`/api/certification/${this.certificationName}`);
         if (response && response.status === 200) {
-          const certificationCode = response.certificationCode;
-          console.log('테스트 결과:', certificationCode);
-
+          console.log('테스트 결과:', this.certificationName);
         }
       } catch (error) {
         console.error('테스트 결과 오류:', error.response.msg);
       }
     };
-
     return {
       text,
       certifications,

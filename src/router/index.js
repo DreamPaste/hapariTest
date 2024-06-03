@@ -1,31 +1,111 @@
-import { route } from 'quasar/wrappers'
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
-import routes from './routes'
-
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
-
-export default route(function (/* { store, ssrContext } */) {
-  const createHistory = process.env.SERVER
-    ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
-
-  const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
-    routes,
-
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE)
-  })
+import { createRouter, createWebHistory } from "vue-router";
 
 
-  return Router
-})
+const router = createRouter({
+  history: createWebHistory(""),
+  routes:
+  [
+  // 자격증 상세페이지
+  {
+    path: '/CertiInfo/:certificationName',
+    name: 'CertiInfo',
+    component: () => import('src/Certification/CertiInfo.vue'),
+    props: true
+  },
+  // 자격증 메인페이지
+  {
+    path: '/',
+    name: 'CertificationMain',
+    component: () => import('src/Certification/CertificationMain.vue'),
+    props: true
+  },
+  // 자격증 실시간검색어
+  {
+    path: '/CertiRealTime',
+    name: 'CertiRealTime',
+    component: () => import('src/Certification/CertiRealTime.vue'),
+    props: true
+  },
+  // 자격증 달력
+  {
+    path: '/CertiDate',
+    name: 'CertiDate',
+    component: () => import('src/Certification/CertiDate.vue'),
+    props: true
+  },
+  // 자격증 메인페이지 그래프
+  {
+    path: '/CertiMainHorizontal',
+    name: 'CertiMainHorizontal',
+    component: () => import('src/Certification/CertiMainHorizontal.vue'),
+    props: true
+  },
+  // 자격증 후기
+  {
+    path: '/CertiReview',
+    name: 'CertiReview',
+    component: () => import('src/Certification/CertiReview.vue'),
+    props: true
+  },
+  // 자격증 후기 수정
+  {
+    path: '/CertiModify',
+    name: 'CertiModify',
+    component: () => import('src/Certification/CertiModify.vue'),
+    props: true
+  },
+  // 자격증 메인페이지에서 정보 플러스 더보기 클릭시 상세페이지
+  {
+    path: '/InfoPlus',
+    name: 'InfoPlus',
+    component: () => import('src/Certification/InfoPlus.vue'),
+    props: true
+  },
+  // 공모전 테이블
+  {
+    path: '/InfoTable',
+    name: 'InfoTable',
+    component: () => import('src/Contest/InfoTable.vue'),
+    props: true
+  },
+  // 공모전 탭
+  {
+    name: 'ContestTab',
+    path: '/ContestTab',
+    component: () => import('src/Contest/ContestTab.vue'),
+    props: true
+  },
+  // 공모전 상세페이지
+  {
+    path: '/contestInfo',
+    name: 'contestInfo',
+    component: () => import('src/Contest/contestInfo.vue'),
+    props: true
+  },
+  // 스터디 상세페이지
+  {
+    path: '/StudyInfo',
+    name: 'StudyInfo',
+    component: () => import('src/Study/StudyInfo.vue'),
+    props: true
+  },
+  // 스터디그룹 상세 내용
+  {
+    path: '/StudyDetail',
+    name: 'StudyDetail',
+    component: () => import('src/Study/StudyDetail.vue'),
+    props: true
+  },
+  { // 추가!!!!!
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => {
+      return import(
+        /* webpackChunkName: "NotFoundView" */ 'src/components/NotFoundView.vue'
+        );
+    },
+  },
+  ],
+});
+
+export default router;

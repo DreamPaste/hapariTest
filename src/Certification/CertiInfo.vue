@@ -252,9 +252,9 @@ import {useRoute} from "vue-router";
 
 export default {
   setup(){
-    const route = useRoute();
-    const certificationName = route.params.certificationName;
-    return{ certificationName};
+  const route = useRoute();
+    const certificationName = ref(route.params.certificationName);
+    return { certificationName };
   },
   data() {
 
@@ -289,14 +289,13 @@ export default {
     this.renderLineCharts();
     this.typeContent();
     this.CertificationInfo();
-    console.log(this.certiName );
+    console.log("수신확인: " , this.certificationName );
   },
   methods: {
     async CertificationInfo() {
-      console.log("자격증 정보 불러오기 테스트" );
 
       try {
-        const response = await api.get( `/api/certification/${this.certiName}`);
+        const response = await api.get( `/api/certification/${this.certificationName}`);
         if (response && response.status === 200) {
           const { qualification, organizer, registrationLink } = response.data;
           this.qualification = qualification;
