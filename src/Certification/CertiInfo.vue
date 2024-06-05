@@ -77,28 +77,28 @@
           <table>
             <tr>
               <td class="tableTitle bg-blue-1 text-blue-9" id="tableTarget1">대상</td>
-              <td class="tableContent flex items-center justify-start" id="tableTarget2" ></td>
+              <td class="tableContent flex items-center justify-start" id="tableTarget2" >{{ qualification }}</td>
             </tr>
             <tr>
               <td class="tableTitle bg-blue-1 text-blue-9">지역</td>
               <td class="tableContent flex items-center justify-start" ></td>
             </tr>
             <tr>
+              <td class="tableTitle bg-blue-1 text-blue-9">기관</td>
+              <td class="tableContent flex items-center justify-start" >{{ organizer }}</td>
+            </tr>
+
+            <tr>
               <td class="tableTitle bg-blue-1 text-blue-9">응시료</td>
               <td class="tableContent flex items-center justify-start"></td>
             </tr>
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9">홈페이지</td>
-              <td class="tableContent flex items-center justify-start">
-                <a href="https://www.q-net.or.kr/man001.do?gSite=Q">홈페이지 바로가기</a>
+              <td class="tableTitle bg-blue-1 text-blue-9" id="tableOnline1"> 접수링크</td>
+              <td class="tableContent flex items-center justify-start" id="tableOnline2">
+                <a>{{ registrationLink }}</a>
               </td>
             </tr>
-            <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9 " id="tableOnline1">접수방법</td>
-              <td class="tableContent flex items-center justify-start" id="tableOnline2" >
-                <a href="https://www.q-net.or.kr/man001.do?gSite=Q">온라인 접수 바로가기</a>
-              </td>
-            </tr>
+
           </table>
         </div>
         </div>
@@ -206,7 +206,7 @@
 
                         <!-- 자격증 후기 제목, 아이디, 작성시간  -->
                         <div class=" col-3 flex row " style=" height :100%; border-bottom: 1px solid #413090; font-size: 0.8rem;  ">
-                          <div class="col-4 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationCode}}</div>
+                          <div class="col-4 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationName}}</div>
                           <div class="col-2 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{createdAt}}</div>
                           <div class="col-2 flex column items-center justify-center"  style="border-right:1px solid #413090 ">{{ userId }}</div>
                           <div class="col-2 flex column items-center justify-center"  style="border-right:1px solid #413090 ">조회수</div>
@@ -275,9 +275,15 @@ export default {
         'url복사',
         '쪽지로 공유',
       ],
-      qualification: "",
+      //자격증코드
+      certificationCode: "",
+      //자격
+      qualification:"",
+      //기관
       organizer: "",
+      //접수링크
       registrationLink: "",
+      //ai요약
       aiSummary:"",
 
     };
