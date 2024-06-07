@@ -4,19 +4,19 @@
 
     <table >
       <tr >
-        <td class="ContestTableTitle  text-light-blue-9"  >모집기간</td>
+        <td class="ContestTableTitle   text-indigo-5"  >모집기간</td>
         <td class="DetailContent flex items-center justify-start" id="tableTarget2">2020.01.04~2020.02.01 {{StartDate}}~{{EndDate}}</td>
       </tr>
       <tr>
-        <td class="ContestTableTitle text-light-blue-9">모집인원</td>
+        <td class="ContestTableTitle  text-indigo-5">모집인원</td>
         <td class="DetailContent flex items-center justify-start" >5명</td>
       </tr>
       <tr>
-        <td class="ContestTableTitle text-light-blue-9">소개글</td>
+        <td class="ContestTableTitle  text-indigo-5">소개글</td>
         <td class="DetailContent flex items-center justify-start" >안녕하세요 저희는 웹사이트 공모전을 위주로 참여하기 위해 만들어진 스터디 그룹입니다. 프론트앤드2명 백엔드2명 서버1명을 뽑으려고 합니다.  </td>
       </tr>
       <tr>
-        <td class="ContestTableTitle text-light-blue-9">공모전소개</td>
+        <td class="ContestTableTitle  text-indigo-5">공모전소개</td>
         <td class="DetailContent flex items-center justify-start">
           <q-card flat bordered style="width :100%">
             <q-card-section horizontal >
@@ -41,14 +41,14 @@
         </td>
       </tr>
       <tr>
-        <td class="ContestTableTitle text-light-blue-9">공모전 링크</td>
+        <td class="ContestTableTitle text-indigo-5">공모전 링크</td>
         <td class="DetailContent flex items-center justify-start"  >
           <a href="https://www.q-net.or.kr/man001.do?gSite=Q">홈페이지 바로가기</a>
         </td>
       </tr>
     </table>
 
-    <q-btn outline rounded class="text-blue-10 "> # 공모전</q-btn>
+    <q-btn outline rounded class="text-purple-10 "> # 공모전</q-btn>
   </q-card>
 </div>
 </template>

@@ -42,14 +42,14 @@ const router = createRouter({
   },
   // 자격증 후기
   {
-    path: '/CertiReview',
+    path: '/CertiReview/:certificationName',
     name: 'CertiReview',
     component: () => import('src/Certification/CertiReview.vue'),
     props: true
   },
   // 자격증 후기 수정
   {
-    path: '/CertiModify',
+    path: '/CertiModify/:certificationName',
     name: 'CertiModify',
     component: () => import('src/Certification/CertiModify.vue'),
     props: true

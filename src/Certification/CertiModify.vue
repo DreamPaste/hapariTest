@@ -4,16 +4,15 @@
     <div class="backgroundReview items-center justify-center" style="width:1000px; height: 100%; background: rgba(255, 255, 255, 0.71);">
       <!-- 페이지 타이틀 -->
       <div class="col-3 flex row" style="width: 100%; color: #413090;font-weight: bold; font-size: 2rem; padding: 5%; margin-bottom: 10px">
-        자격증 후기 수정 &nbsp;
-        <!-- 아이콘 사야함 !!! -->
-        <img src = "src/assets/Image/수정하기2.jpg" alt="수정하기" style="width:4%; height: 4%"/>
+        <span class="text-indigo-7">자격증 후기 수정 &nbsp;</span>
+        <img src = "~/assets/Image/수정하기2.jpg" alt="수정하기" style="width:4%; height: 4%;"/>
       </div>
 
       <!-- 자격증 선택 -->
       <div class="col-1 flex row" style="padding: 0 50px; margin-bottom: 30px;">
-        <q-card class="my-card bg-indigo-1 text-indigo-9" >
+        <q-card flat class="my-card bg-red-1 text-red-9" style="border-radius: 15px">
           <q-card-section>
-            <div class="certiTItle">자격증 이름{{ certificationCode }}</div>
+            {{ certificationName }}
           </q-card-section>
 
         </q-card>
@@ -21,21 +20,21 @@
 
       <!-- 타이틀 입력 -->
       <div class="col-1 flex row" style="padding: 0 50px; margin-bottom: 30px;">
-        <q-input v-model="title" filled autogrow label="title" bg-color="blue-1" style="width:100%;  font-weight: bold; font-size: 1.2rem;" />
+        <q-input outlined v-model="title"  autogrow label="title" style="width:100%;  font-weight: bold; font-size: 1.2rem;" />
       </div>
       <!-- 내용 입력 -->
       <div class="col-3 flex row" style="width: 100%; padding: 0 50px; margin-bottom:200px">
-        <q-input v-model="contents" filled type="textarea" label="review" bg-color="blue-1" style="width:100%; font-weight: bold; font-size: 1.2rem;" />
+        <q-input outlined v-model="contents"  type="textarea" label="review" style="width:100%; font-weight: bold; font-size: 1.2rem;" />
       </div>
       <div class="col-3 flex row items-center justify-center">
         <!-- 저장 버튼 -->
-        <q-btn flat class="bg-blue-1 text-blue-9" @click="saveReview"
+        <q-btn flat class="bg-indigo-1 text-indigo-9" @click="saveReview"
                style="border-radius: 10px;
                padding:10px; font-weight: bold;
                font-size: 1rem;
                width: 100px; height: 100%; margin-right: 2%" label="저장"/>
         <!-- 이전 버튼 -->
-        <q-btn flat class="bg-blue-1 text-blue-9" @click="goBack"
+        <q-btn flat class="bg-indigo-1 text-indigo-9" @click="goBack"
                style="border-radius: 10px;
                 padding:10px;
                 font-weight: bold;
@@ -53,60 +52,56 @@ import { api } from "boot/axios";
 
 export default {
   props: {
-    certificationCode: {
-      type: Number,
+    certificationName: {
+      type: String,
       required: true,
     },
     userId: {
       type: String,
       required: true,
-    }
+    },
   },
   setup(props) {
-    const router = useRouter()
-    const title = ref('')
-    const contents = ref('')
+    console.log('certificationName:', props.certificationName);
+    const router = useRouter();
+    const title = ref('');
+    const contents = ref('');
 
     const goBack = () => {
-      router.go(-1)
+      router.go(-1);
     }
 
-    const saveReview = () => {
-      const reviews = {
-        title: title.value,
-        contents: contents.value,
-        userId: props.userId,
-      }
-    }
+    const saveReview = async () => {
+      try {
+        const reviewData = {
+          title: title.value,
+          contents: contents.value,
+          userId: props.userId,
+          certificationName: props.certificationName,
+        };
 
-    const fetchData = (certificationId, reviewId) => {
-      console.log(certificationId);
-      const res = api.get(`/api/certifications/${certificationId}/reviews/${reviewId}`, {
-        headers: {
-          Authorization: `Bearer`,
-          certificationId: certificationId,
-        }
-      })
-        .then((response) => {
-          if (response && response.status === 200) {
-            const data = response.data;
-            console.log(data);
-            alert("게시글 수정에 성공했습니다.");
+        const response = await api.post(`/api/certifications/reviews/${props.reviewId}`, reviewData, {
+          headers: {
+            Authorization: `Bearer `,
           }
-
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("해당 게시글을 수정할 수 없습니다.");
         });
+
+        if (response && response.data) {
+          alert("게시글 수정에 성공했습니다.");
+        } else {
+          alert('게시글 수정에 실패하였습니다.');
+        }
+      } catch (error) {
+        alert('해당 게시글을 수정할 수 없습니다: ' + error.response.data.message);
+      }
     };
+
 
     return {
       title,
       contents,
       goBack,
       saveReview,
-      fetchData
     };
   }
 }

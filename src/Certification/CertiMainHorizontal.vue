@@ -24,9 +24,9 @@ export default defineComponent({
             {
               label: '합격률',
               backgroundColor: [
-                "rgba(165,227,253,0.58)",
-                "rgba(187,239,255,0.56)",
-                "rgba(153,193,255,0.58)",
+                "rgba(187,165,253,0.58)",
+                "rgba(199,187,255,0.56)",
+                "rgba(209,153,255,0.58)",
               ],
               data: [40, 20, 12]
             },

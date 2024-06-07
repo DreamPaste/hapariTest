@@ -29,7 +29,7 @@
           </template>
         </q-input>
       </div>
-      <div class="col-8 flex column items-center justify-center" style="width : 90%">
+      <div class="col-8 flex column items-center justify-center" style="width : 90%; ">
 
         <div v-for="n in 15" :key="n" style="width : 100%;">
           <q-card flat class="InfoCard row" style="width : 100%; border-radius: 10px; margin-bottom: 1%">
@@ -38,10 +38,10 @@
               <img src="src/assets/Image/자격증 썸네일1.jpg" alt="정보플러스 썸네일" style="width: 100%; height: 100%;" />
             </q-card-section>
             <q-card-section class="col-10 flex column items-start justify-evenly">
-              <q-card-section class="text-bold" style="font-size: 1.5rem">
+              <q-card-section class="text-bold" style="font-size: 1.3rem">
                 정보플러스 제목
               </q-card-section>
-              <q-card-section style="font-size: 1.2rem">
+              <q-card-section style="font-size: 1rem">
                 정보플러스 내용
               </q-card-section>
               <q-card-section>

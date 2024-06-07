@@ -2,7 +2,7 @@
   <div class="container flex items-center justify-center" style="background: #f8f8f8; margin: 100px 0;">
     <div class="backgroundCertiMain flex column items-center justify-center" style="background: #ffffff; padding: 2%; width: 1200px;">
       <!-- 스터디제목 -->
-      <div class="col-1 row flex align-center justify-center text-blue-9 text-bold" style="font-size: 1.8rem; margin: 2%;">
+      <div class="col-1 row flex align-center justify-center text-indigo-7 text-bold" style="font-size: 1.8rem; margin: 2%;">
         <q-chip class="bg-red-1 text-red-9">D - 9</q-chip>
         &nbsp;
         <span class="StudyGroupName">웹사이트 공모전 같이 나갈 사람 ( 스터디 그룹 이름 )</span>
@@ -20,8 +20,8 @@
               v-model="tab"
               dense
               class="text-grey"
-              active-color="blue-9"
-              indicator-color="blue-9"
+              active-color="indigo-7"
+              indicator-color="indigo-9"
               align="justify"
               narrow-indicator
             >
@@ -48,13 +48,13 @@
         <!-- 팀분석, progressbar 묶음-->
         <div class="GroupAnalyze col-8 column flex align-center justify-center" >
           <div class="col-4 row flex align-center justify-between" >
-            <div class="row text-bold text-blue-9 " style="font-size: 1.5rem; width:35%;">
+            <div class="row text-bold text-indigo-7 " style="font-size: 1.5rem; width:35%;">
               <img src = "src/assets/Image/분석.png" alt="분석" style="width:15%; height: 28%; margin-right:5% "/>
               <div>
                 팀분석
               </div>
             </div>
-            <div class="bg-blue-1 text-blue-9 flex "
+            <div class="bg-indigo-1 text-indigo-7 flex "
                  style="border-radius: 15px; font-size: 1.2rem; width: 50%; height: 40%; display: flex; align-items: center; justify-content: center;">
               <img src = "src/assets/Image/경고2.png" alt="경고2" style="width:10%; height:58%; margin-right:3% "/>
               <span class="StudyGroupWarning">디자이너가 부족해요</span>
@@ -64,19 +64,19 @@
           <!-- progressbar1 -->
           <div class="col-8 column flex align-center justify-evenly" style=" width:90%; padding:2%">
             <div >
-              <span class=" text-blue-9" style="padding:2%">사용자님의 팀원 적합도</span>
-              <q-linear-progress size="25px" :value="progress1" color="blue-6" track-color="blue-2" style="border-radius: 15px">
+              <span class=" text-purple-9" style="padding:2%">사용자님의 팀원 적합도</span>
+              <q-linear-progress size="25px" :value="progress1" color="purple-6" track-color="purple-2" style="border-radius: 15px">
                 <div class="absolute-full flex flex-center">
-                  <q-badge color="white" text-color="blue-6" :label="progressLabel1" />
+                  <q-badge color="white" text-color="purple-6" :label="progressLabel1" />
                 </div>
               </q-linear-progress>
             </div>
             <!-- progressbar2 -->
             <div>
-              <span class=" text-purple-9" style="padding:2%">사용자님이 팀원이 될 확률</span>
-              <q-linear-progress size="25px" :value="progress2" color="purple-6" track-color="purple-2" style="border-radius: 15px">
+              <span class=" text-indigo-9" style="padding:2%">사용자님이 팀원이 될 확률</span>
+              <q-linear-progress size="25px" :value="progress2" color="indigo-6" track-color="indigo-2" style="border-radius: 15px">
                 <div class="absolute-full flex flex-center">
-                  <q-badge color="white" text-color="purple-6" :label="progressLabel2" />
+                  <q-badge color="white" text-color="indigo-6" :label="progressLabel2" />
                 </div>
               </q-linear-progress>
             </div>
@@ -143,7 +143,7 @@ export default {
         height: 350,
         type: 'radar',
       },
-      colors: ['#33b1ff'],
+      colors: ['#4e33ff'],
       yaxis: {
         stepSize: 20,
       },
@@ -162,7 +162,7 @@ export default {
         height: 350,
         type: 'radar',
       },
-      colors: ['#856ae8'],
+      colors: ['#a76ae8'],
       yaxis: {
         stepSize: 20,
       },

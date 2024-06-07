@@ -2,8 +2,8 @@
   <div >
     <div >
       <q-date
-        color="blue-1"
-        text-color="blue-9"
+        color="indigo-1"
+        text-color="indigo-9"
         v-model="date"
         :events="events"
 flat bordered

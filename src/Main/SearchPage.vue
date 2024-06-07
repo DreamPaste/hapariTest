@@ -4,15 +4,15 @@
 
     <!-- 검색 결과 갯수 표출 -->
     <div class="col-2 flex items-center justify-center"  style=" width: 100%; margin:2%" >
-      <span class="text-blue-9 text-bold" style="font-size: 1.5rem">
-          '<span class="highlight text-blue-3">{{ SearchName }}</span>'에 대한 검색 결과는 {{ SearchCount }}개 입니다
+      <span class="text-indigo-9 text-bold" style="font-size: 1.5rem">
+          '<span class="highlight text-indigo-3">{{ SearchName }}</span>'에 대한 검색 결과는 {{ SearchCount }}개 입니다
         </span>
     </div>
     <!-- 검색기능 -->
     <div  class="col-2 flex items-center justify-center" style=" width: 100%; margin:2%">
-      <q-input color="blue-2" rounded outlined v-model="text" style="width:80%; font-size: 18px">
+      <q-input color="indigo-2" rounded outlined v-model="text" style="width:80%; font-size: 18px">
         <template v-slot:prepend>
-          <q-icon class="text-blue-2 " name="search"   size="33px"/>
+          <q-icon class="text-indigo-2 " name="search"   size="33px"/>
         </template>
 
         <template v-slot:append>
@@ -115,7 +115,7 @@
     </div>
     <!--홈 이동 버튼 -->
     <div  class="col-2 flex items-center justify-center" style="width: 100%">
-      <q-btn flat class="text-blue-9 bg-blue-1" style="border-radius: 15px; font-size: 1rem"> 홈으로</q-btn>
+      <q-btn flat class="text-indigo-9 bg-indigo-1" style="border-radius: 15px; font-size: 1rem"> 홈으로</q-btn>
     </div>
 
   </div>
@@ -143,14 +143,14 @@ export default {
   cursor: pointer;
   font-size: 1.1rem;
   border-radius: 10px 10px 0 0;
-  color: #77b2ed;
+  color: #9877ed;
   transition: all 0.3s ease;
 }
 
 .tab-buttons button.active {
-  color: #4778ef;
+  color: #7747ef;
   font-weight: bold;
-  background: rgba(199, 229, 251, 0.72);
+  background: rgba(217, 214, 246, 0.72);
   font-size: 1.2rem;
 }
 

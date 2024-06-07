@@ -5,7 +5,7 @@
       <!-- 공모전 이름, 날짜 묶음 -->
       <div class="col-1 row items-center justify-center" style="width: 100%; height: 130px; border-bottom: 1px solid rgba(83, 68, 152, 0.53);">
         <!-- 공모전 이름 -->
-        <div class="col-6 flex row items-center justify-start text-bold" style=" font-size: 2.2rem; width: 100%; color: #413090;">
+        <div class="col-6 flex row items-center justify-start text-bold text-indigo-7" style=" font-size: 2.2rem; width: 100%; ">
           공모전 이름 {{contestName}}
         </div>
 
@@ -24,7 +24,7 @@
           <!-- 버튼 묶음-->
         <div class="col-6 flex row items-center justify-end" style="width: 50%; "  >
           <!-- 접수 버튼 -->
-          <q-btn class="contestBtn no-shadow bg-blue-1 text-blue-9 text-bold" icon="navigation" label="접수하기" flat
+          <q-btn class="contestBtn no-shadow bg-indigo-1 text-indigo-9 text-bold" icon="navigation" label="접수하기" flat
                  style="width: 150px;
                    border-radius: 10px;
                    font-size : 1.1rem;
@@ -84,9 +84,8 @@
       <div class="col-2 row items-center justify-center" style="  border-top: 1px solid #413090; width: 100%; color: #413090; border-bottom: 1px solid #413090;">
         <div class="col-2 row items-center justify-start  text-bold" style="width: 100%;font-size: 1.6rem; margin: 3% 0  1% 0 ">
           <!-- 아이콘 사야함 !!! -->
-          <img src = "src/assets/Image/체크.jpg" alt="공모전 체크표시" style="width:3%; height: 2%"/>
-
- &nbsp;이런 공모전도 확인해보세요
+          <img src = "src/assets/Image/체크.png" alt="공모전 체크표시" style="width:3.5%; height: 3% "/>
+<span class="text-indigo-7">&nbsp; 이런 공모전도 확인해보세요</span>
 
         </div>
         <!-- 추천 공모전 이미지-->
@@ -99,13 +98,13 @@
           </div>
           <!-- 추천 공모전 이름-->
           <div class="col-2 row items-center justify-evenly " style="width: 100%;  margin-bottom : 2%">
-            <div class="col-4 column items-center justify-center bg-blue-1 text-blue-9" style="width: 30%; border-radius: 10px">
+            <div class="col-4 column items-center justify-center bg-indigo-1 text-indigo-7" style="width: 30%; border-radius: 10px">
               <q-btn class="contestNameBtn" label="공모전 이름" flat />
             </div>
-            <div class="col-4 column items-center justify-center bg-blue-1 text-blue-9" style="width: 30%; border-radius: 10px">
+            <div class="col-4 column items-center justify-center bg-indigo-1 text-indigo-7" style="width: 30%; border-radius: 10px">
               <q-btn class="contestNameBtn" label="공모전 이름" flat />
             </div>
-            <div class="col-4 column items-center justify-center bg-blue-1 text-blue-9" style="width: 30%; border-radius: 10px">
+            <div class="col-4 column items-center justify-center bg-indigo-1 text-indigo-7" style="width: 30%; border-radius: 10px">
               <q-btn class="contestNameBtn" label="공모전 이름" flat />
             </div>
           </div>

@@ -4,9 +4,9 @@
 
       <!-- 검색기능 -->
       <div class="col-2 row flex align-center justify-center" style="width:100%; margin-bottom: 1%">
-        <q-input color="blue-2" rounded outlined v-model="text" style="width:80%; font-size: 18px">
+        <q-input color="indigo-2" rounded outlined v-model="text" style="width:80%; font-size: 18px">
           <template v-slot:prepend>
-            <q-icon class="text-blue-2 " name="search"   size="33px"/>
+            <q-icon class="text-indigo-2 " name="search"   size="33px"/>
           </template>
 
           <!-- 텍스트 -->
@@ -28,7 +28,7 @@
           <!--추천자격증 -->
           <div class="col-4 row flex align-center justify-center" style="width:100% ; padding:1%">
 
-            <q-card class="my-card bg-white text-blue-9" flat bordered  style="width:100% ; font-size :1.3rem; padding:2% ; border-radius: 10px">
+            <q-card class="my-card bg-white text-indigo-9" flat bordered  style="width:100% ; font-size :1.3rem; padding:2% ; border-radius: 10px">
 
 
               <q-card-section horizontal >
@@ -45,7 +45,7 @@
                   </q-card-section>
 
                   <q-card-section class="col-4 row flex align-end justify-end">
-                    <q-btn class="bg-blue-1 text-blue-9" flat  icon="navigation" label="접수하기" style="border-radius: 10px"/>
+                    <q-btn class="bg-indigo-1 text-indigo-9" flat  icon="navigation" label="접수하기" style="border-radius: 10px"/>
                   </q-card-section>
                 </q-card-section>
               </q-card-section>
@@ -63,20 +63,20 @@
 
             <div class="col-6 column flex align-center justify-center" style="width :47% ; padding:1%">
               <q-card flat bordered Horizontal class="flex align-center justify-center" style="height: 95%; border-radius: 10px; padding:2%; ">
-                <q-card-section class="col-3 row flex align-center justify-center text-blue-9 text-bold"
-                                style="font-size: 1.5rem; margin:2%; width : 80% ; height :70px; border-bottom:1px solid rgba(185,185,185,0.55)" >
-                  <img src = "src/assets/Image/경고등.jpg" alt="경고등" style="width:14%; height: 80%; "/>
-                  &nbsp; 접수중인 자격증
+                <q-card-section class="col-3 row flex align-center justify-center text-indigo-9 text-bold"
+                                style="margin:2%; width : 80% ; height :70px; border-bottom:1px solid rgba(185,185,185,0.55)" >
+                  <img src = "src/assets/Image/체크.png" alt="체크" style="width:16%; height: 90%; "/>
+                  &nbsp; <span class="checkCerti" style="font-size: 1.5rem"> 접수중인 자격증</span>
 
                 </q-card-section>
 
                 <div class="q-gutter-sm">
                   <div v-for="(certification, index) in certifications" :key="index" style="width: 100%">
                     <q-checkbox
-                      class="text-blue-6"
+                      class="text-indigo-5"
                       v-model="certification.checked"
                       :label="certification.label"
-                      color="blue-4"
+                      color="indigo-4"
                       style="font-size: 1.3rem;
                                margin:2%"
                     />
@@ -108,10 +108,10 @@
           <q-card flat bordered style="width: 100%; height: 100%; border-radius: 10px; padding: 2%;">
             <q-card-section class="col-2 row" style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; align-items: center; width: 60%;">
-                <span class="text-bold text-blue-9" style="font-size: 1.8rem;">정보 PLUS</span>
-                <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 12%; height: 12%; margin-left: 10px;" />
+                <span class="text-bold text-indigo-9" style="font-size: 1.8rem;">정보 PLUS</span>
+                <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 11%; height: 10%; margin-left: 10px;" />
               </div>
-              <q-btn flat class="bg-blue-1 text-blue-9" style="border-radius:18px " @click="goInfoPlus">더보기</q-btn>
+              <q-btn flat class="bg-indigo-1 text-indigo-9" style="border-radius:18px " @click="goInfoPlus">더보기</q-btn>
             </q-card-section>
 
             <!-- 정보플러스 1 -->

@@ -6,7 +6,7 @@
       <div class="Certification-Title col-1 flex row items-start justify-center" style="width: 100%;">
 
         <!-- 자격증 이름 -->
-        <div class="Certification-Name col-6 flex row items-center justify-start text-indigo-10" style="width: 100%;">
+        <div class="Certification-Name col-6 flex row items-center justify-start text-indigo-9" style="width: 100%;">
  {{certificationName}}
           </div>
 
@@ -22,7 +22,7 @@
           </div>
 
           <div class="col-6 flex row items-center justify-end" style="width: 50%; "  >
-            <q-btn class="certiBtn no-shadow bg-blue-1 text-blue-9 " icon="navigation" label="접수하기" flat
+            <q-btn class="certiBtn no-shadow bg-indigo-1 text-indigo-9 " icon="navigation" label="접수하기" flat
                    style="width: 27%;
                    border-radius: 10px; "/>
 
@@ -65,10 +65,10 @@
         <!-- 표, ai 요약 묶음 -->
         <div class="TableAndAi col-3 flex row items-center justify-between"  style="width: 100%;  padding : 2% 0;">
           <!-- AI 요약 -->
-          <div class="aiSummary col-6 flex  column  text-blue-9">
-          <div class="ai-sum col-2 flex items-center justify-center">AI 요약</div>
+          <div class="aiSummary col-6 flex  column  text-indigo-9">
+          <div class="ai-sum col-2 flex items-center justify-center" style="font-size:1.4rem; margin: 1% ">AI 요약</div>
           <div class="ai-content col-10 flex item-center justify-center">
-            <span id="typing-text">{{aiSummary}}</span>
+            <span id="typing-text" style="font-size: 1.1rem">{{CertiSummary.aiSummary}}</span>
           </div>
         </div>
 
@@ -76,26 +76,26 @@
         <div class=" certiInfo-Table col-6 flex column" style="width: 49%; ">
           <table>
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9" id="tableTarget1">대상</td>
-              <td class="tableContent flex items-center justify-start" id="tableTarget2" >{{ qualification }}</td>
+              <td class="tableTitle bg-indigo-1 text-indigo-9" id="tableTarget1">대상</td>
+              <td class="tableContent flex items-center justify-start" id="tableTarget2" >{{ CertiSummary.qualification }}</td>
             </tr>
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9">지역</td>
+              <td class="tableTitle bg-indigo-1 text-indigo-9">지역</td>
               <td class="tableContent flex items-center justify-start" ></td>
             </tr>
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9">기관</td>
-              <td class="tableContent flex items-center justify-start" >{{ organizer }}</td>
+              <td class="tableTitle bg-indigo-1 text-indigo-9">기관</td>
+              <td class="tableContent flex items-center justify-start" >{{ CertiSummary.organizer }}</td>
             </tr>
 
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9">응시료</td>
+              <td class="tableTitle bg-indigo-1 text-indigo-9">응시료</td>
               <td class="tableContent flex items-center justify-start"></td>
             </tr>
             <tr>
-              <td class="tableTitle bg-blue-1 text-blue-9" id="tableOnline1"> 접수링크</td>
+              <td class="tableTitle bg-indigo-1 text-indigo-9" id="tableOnline1"> 접수링크</td>
               <td class="tableContent flex items-center justify-start" id="tableOnline2">
-                <a>{{ registrationLink }}</a>
+                <a>{{ CertiSummary.registrationLink }}</a>
               </td>
             </tr>
 
@@ -110,7 +110,7 @@
       <div class="graphSet1 col-2 row flex items-center justify-between" style="width: 100%; height: 400px;   border-bottom: 1px solid rgba(83, 68, 152, 0.53);">
         <!-- graph1 -->
         <div class="graph1 col-6 column flex items-center justify-start" style="height: 400px; width: 49%;">
-          <div class="chartTitle text-center  text-blue-9">
+          <div class="chartTitle text-center  text-indigo-7">
            • 연도별 합격률</div>
           <div class="lineChart flex column items-center justify-center" >
             <canvas id="lineChart1"></canvas>
@@ -118,7 +118,7 @@
         </div>
         <!-- graph2 -->
         <div class="graph2 col-6 flex column items-center justify-start" style="height: 400px; width: 49%;">
-          <div class="chartTitle text-center text-blue-9">• 이 자격증을 소유한 사람이 취득한 자격증</div>
+          <div class="chartTitle text-center text-indigo-7">• 이 자격증을 소유한 사람이 취득한 자격증</div>
           <div class="BarChart flex column items-center justify-center " >
             <canvas id="BarChart1"></canvas>
           </div>
@@ -138,7 +138,7 @@
                 <template v-if="currentId === 'tab2'">
                   <!-- 관련 기사 정렬버튼 -->
                   <div style="display: flex; justify-content: flex-end;">
-                    <q-btn-dropdown class=" bg-blue-1 text-blue-9" flat  label="Dropdown Button ">
+                    <q-btn-dropdown class=" bg-indigo-1 text-indigo-9" flat  label="Dropdown Button " style="border-radius: 15px">
                       <q-list>
                         <q-item clickable v-close-popup @click="onItemClick">
                           <q-item-section>
@@ -154,7 +154,7 @@
                     </q-btn-dropdown>
                   </div>
                   <!-- 관련 기사 목록 -->
-                  <div v-for="item in 30" :key="item" @click="increaseViewCount(item)">
+                  <div v-for="item in 30" :key="item">
                     <q-card class="q-ma-sm q-pa-sm" flat bordered style="  padding : 10px ; width : 99%; height : 180px">
                       <div class="newsWrap row  " style=" height : 100%">
                         <!-- 뉴스기사 썸네일 -->
@@ -174,8 +174,8 @@
                           </div>
                           <!-- 조회수 -->
                           <div class="news-click col-2 flex row items-center justify-end"  >
-                            <q-chip class="news-click col-2 flex row items-end justify-end bg-blue-1 text-blue-9" style="width:9%;">
-                              조회수: {{ viewCounts[item] || 0 }}
+                            <q-chip class="news-click col-2 flex row items-end justify-end bg-indigo-1 text-indigo-9" style="width:9%;">
+                              조회수:
                             </q-chip>
                           </div>
 
@@ -188,7 +188,7 @@
                 <!-- 탭 3일 때 -->
                 <template v-if="currentId === 'tab3'">
                   <div style="display: flex; justify-content: flex-end;">
-                    <button class="writeBtn  bg-blue-1 text-blue-9" style="border-radius: 10px;margin-bottom: 10px; height: 30px; width: 17%; border: 0;" @click="goToCertiReview">
+                    <button class="writeBtn  bg-indigo-1 text-indigo-9" style="border-radius: 10px;margin-bottom: 10px; height: 30px; width: 17%; border: 0;" @click="goToCertiReview">
                       <span class="recepWord " style=" font-size: 0.8rem; ">
                         나도 후기 쓰러가기
                         <!-- 연필 아이콘 -->
@@ -201,34 +201,33 @@
 
                   <!-- 합격자 후기 목록 -->
                   <div class="reviewWrap">
-                    <q-card flat bordered style="  width:100%; height :100%; margin-bottom: 10px; border-color: #413090;">
+                    <q-card flat bordered v-for="(review, index) in reviews" :key="index" style="  width:100%; height :100%; margin-bottom: 10px; border-color: #413090;" >
                       <div class="reviewsList">
 
                         <!-- 자격증 후기 제목, 아이디, 작성시간  -->
                         <div class=" col-3 flex row " style=" height :100%; border-bottom: 1px solid #413090; font-size: 0.8rem;  ">
-                          <div class="col-4 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationName}}</div>
-                          <div class="col-2 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{createdAt}}</div>
-                          <div class="col-2 flex column items-center justify-center"  style="border-right:1px solid #413090 ">{{ userId }}</div>
-                          <div class="col-2 flex column items-center justify-center"  style="border-right:1px solid #413090 ">조회수</div>
+                          <div class="col-5 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{certificationName}}</div>
+                          <div class="col-3 flex column items-center justify-center" style="border-right:1px solid #413090 "> {{review.createdAt}}</div>
+                          <div class="col-2 flex column items-center justify-center"  style="border-right:1px solid #413090 ">{{ review.userId }}</div>
                           <div class="col-2 flex column items-center justify-center" >좋아요 수</div>
                         </div>
                         <!-- 자격증 후기 제목 -->
                         <div class="certiReview-Title col-3 flex row items-center justify-start  text-bold" style=" font-size: 1.3rem; margin-bottom: 20px  ">
-                          {{title}}자격증 제목
+                          {{review.title}}자격증 제목
                         </div>
                         <!-- 자격증 후기 내용 -->
                         <div class="certiReview-Content col-6 flex row items-center justify-start " style=" font-size: 1.1rem; ">
-                          {{content}}자격증 내용
+                          {{review.content}}자격증 내용
                         </div>
                       </div>
                     </q-card>
                     <div class="goodModBtn flex items-center justify-center "  >
-                      <q-btn flat class=" bg-blue-1 text-blue-9" icon="favorite"  label="좋아요"
+                      <q-btn flat class=" bg-indigo-1 text-indigo-9" icon="favorite"  label="좋아요"
                              style="
                              border-radius: 10%;
                              font-size:0.8rem;
                           margin-right: 1%"/>
-                      <q-btn flat class=" bg-blue-1 text-blue-9" @click="goToModifyPage" label="수정하기"
+                      <q-btn flat class=" bg-indigo-1 text-indigo-9" @click="goToModifyPage" label="수정하기"
                              style="
                               border-radius: 10%;
 
@@ -244,153 +243,100 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Chart from "chart.js/auto";
+import {ref, onMounted, reactive} from "vue";
 import { api } from "boot/axios";
-import { ref } from "vue";
-import {useRoute} from "vue-router";
-
-export default {
-  setup(){
-  const route = useRoute();
-    const certificationName = ref(route.params.certificationName);
-    return { certificationName };
-  },
-  data() {
-
-    return {
-      formattedDate: new Date().toLocaleDateString(),
-      isLiked: false,
-      tab: ref("tab1"),
-      currentId: ref("tab1"),
-      list: ["tab1", "tab2", "tab3"],
-      news_content: [],
-      reviews: [],
-      viewCounts: {},
-      reviewList: ref(0),
-      //공유 버튼
-      showDialog: false,
-      selectedOption: null,
-      options: [
-        'url복사',
-        '쪽지로 공유',
-      ],
-      //자격증코드
-      certificationCode: "",
-      //자격
-      qualification:"",
-      //기관
-      organizer: "",
-      //접수링크
-      registrationLink: "",
-      //ai요약
-      aiSummary:"",
-
-    };
-  },
-
-  mounted() {
-
-    this.renderBarCharts();
-    this.renderLineCharts();
-    this.typeContent();
-    this.CertificationInfo();
-    console.log("수신확인: " , this.certificationName );
-  },
-  methods: {
-    async CertificationInfo() {
-
-      try {
-        const response = await api.get( `/api/certification/${this.certificationName}`);
-        if (response && response.status === 200) {
-          const { qualification, organizer, registrationLink } = response.data;
-          this.qualification = qualification;
-          this.organizer = organizer;
-          this.registrationLink = registrationLink;
-          console.log('결과1', this.qualification);
-          console.log('결과2', this.organizer);
-          console.log('결과3', this.registrationLink);
-
-        }
-      } catch (error) {
-        console.error('테스트 결과 오류:', error.response.data.msg);
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+    //자격증 이름
+    const certificationName = ref( route.params.certificationName);
+    const userId = ref('minseo1111')
+    const isLiked = ref(false);
+    const currentId = ref("tab1");
+    const showDialog = ref(false);
+    const selectedOption = ref(null);
+    const options = ref(["url복사", "쪽지로 공유"]);
+    const displayText = ref("");
+    //자격증 후기
+    const reviews = reactive([
+      {
+        title: "제목!",
+        content: "내용임",
+        createdAt: "오늘",
+        userId:"나나"
+      },
+      {
+        title: "2",
+        content: "2",
+        createdAt: "2",
+        userId: "나나2"
       }
-    },
-
-    // 공유 버튼 클릭시
-    toggleSelectBox() {
-      this.showDialog = !this.showDialog;
-    },
-    // 공유 버튼 클릭후 선택시
-    confirmSelection() {
-      if (this.selectedOption === 'url복사') {
-        this.copyUrlToClipboard();
-      }
-      this.showDialog = false;
-      console.log('Selected option:', this.selectedOption);
-    },
-    // URL 복사
-    copyUrlToClipboard() {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url).then(() => {
-        this.$q.notify({
-          color: 'green',
-          textColor: 'white',
-          icon: 'check',
-          message: 'URL이 클립보드에 복사되었습니다.'
-        });
-      }).catch(_ => {
-
-        this.$q.notify({
-          color: 'red',
-          textColor: 'white',
-          icon: 'warning',
-          message: 'URL 복사에 실패했습니다.'
-        });
-      });
-    },
-    // 탭에 인기순, 최신순 버튼 클릭시
-    onItemClick() {
-      console.log("Item clicked");
-    },
-    // 탭 버튼 클릭시
-    openTab(tabId) {
-      this.currentId = tabId;
-    },
-    // 뉴스 조회수
-    increaseViewCount(item) {
-      if (this.viewCounts[item]) {
-        this.viewCounts[item]++;
-      } else {
-        this.viewCounts[item] = 1;
-      }
-    },
-
-    // 수정하기 버튼 클릭시 수정하기 페이지로 이동
-    goToModifyPage() {
-      this.$router.push({
-        name: "CertiModify",
-        params: { certificationId: this.certificationId, userId: this.userId },
-
-      });
-      console.log("Certification ID:", this.certificationId);
-      console.log("User ID:", this.userId);
-    },
-    goToCertiReview() {
-      this.$router.push({
-        name: 'CertiReview',
-        query: { certificationCode: this.certificationCode, userId: this.userId },
-      });
-      console.log("Certification code:", this.certificationCode);
-      console.log("User ID:", this.userId);
-    },
-
-
-    toggleLike() {
-      this.isLiked = !this.isLiked;
+    ]);
+    //자격증 표
+    const CertiSummary = ref({
+      qualification: "Professional Certificate",
+      organizer: "Certification Authority",
+      registrationLink: "https://example.com/register",
+      aiSummary:"정보처리기사에 대한 AI 요약입니다."
+    });
+    //좋아요 토글
+    const toggleLike = () => {
+      isLiked.value = !isLiked.value;
       console.log("heartclick");
-    },
-    renderBarCharts() {
+    };
+    //공유다이얼로그 선택 상자
+    const toggleSelectBox = () => {
+      showDialog.value = !showDialog.value;
+    };
+    //선택확인?
+    const confirmSelection = () => {
+      if (selectedOption.value === "url복사") {
+        copyUrlToClipboard();
+      }
+      showDialog.value = false;
+      console.log("Selected option:", selectedOption.value);
+    };
+    //공유 누르면 복사?
+    const copyUrlToClipboard = () => {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(
+        () => {
+          // Success
+          console.log("URL이 클립보드에 복사되었습니다.");
+        },
+        () => {
+          // Error
+          console.error("URL 복사에 실패했습니다.");
+        }
+      );
+    };
+
+    const openTab = (tabId) => {
+      currentId.value = tabId;
+    };
+
+    //자격증 후기 수정
+    const goToModifyPage = () => {
+      router.push({
+        name: "CertiModify",
+        query: { certificationName: certificationName, userId: userId }
+      });
+      console.log("certificationName:", certificationName);
+      console.log("User ID:", userId);
+    };
+
+    const goToCertiReview = () => {
+      router.push({
+        name: "CertiReview",
+        query: { certificationName: certificationName, userId: userId }
+      });
+      console.log("certificationName:", certificationName);
+      console.log("User ID:", userId);
+    };
+
+    const renderBarCharts = () => {
       const ctx2 = document.getElementById("BarChart1").getContext("2d");
       new Chart(ctx2, {
         type: "bar",
@@ -401,14 +347,13 @@ export default {
               label: "소유 비율",
               data: [12, 5, 3],
               backgroundColor: [
-                "rgba(165,227,253,0.58)",
-                "rgba(187,239,255,0.56)",
-                "rgba(153,193,255,0.58)",
+                "rgba(181,165,253,0.58)",
+                "rgba(206,187,255,0.56)",
+                "rgba(213,206,255,0.58)"
               ],
-              borderColor: ["rgba(165,227,253,0.83)", "rgba(187,239,255,0.83)", "rgba(153,193,255,0.84)"],
-              borderWidth: 1,
-            },
-          ],
+
+            }
+          ]
         },
         options: {
           indexAxis: "y",
@@ -417,24 +362,23 @@ export default {
               beginAtZero: true,
               ticks: {
                 font: {
-                  size: 14,
-
-                },
-              },
+                  size: 14
+                }
+              }
             },
             y: {
               ticks: {
                 font: {
-                  size: 14,
-
-                },
-              },
-            },
-          },
-        },
+                  size: 14
+                }
+              }
+            }
+          }
+        }
       });
-    },
-    renderLineCharts() {
+    };
+
+    const renderLineCharts = () => {
       const ctx1 = document.getElementById("lineChart1").getContext("2d");
       new Chart(ctx1, {
         type: "line",
@@ -444,64 +388,81 @@ export default {
             {
               label: "합격률",
               data: [30, 40, 85, 57, 88],
-              backgroundColor: "rgb(168,212,255)",
-              borderWidth: 1,
-            },
-          ],
+              backgroundColor: "rgb(180,168,255)",
+              borderWidth: 1
+            }
+          ]
         },
         options: {
           plugins: {
             title: {
               display: true,
               font: {
-                size: 16,
-
-              },
-            },
+                size: 16
+              }
+            }
           },
           scales: {
             x: {
               ticks: {
                 font: {
-                  size: 14,
-
-                },
-              },
+                  size: 14
+                }
+              }
             },
             y: {
               ticks: {
                 font: {
-                  size: 14,
-
+                  size: 14
                 },
-                beginAtZero: true,
-              },
-            },
-          },
-
-        },
+                beginAtZero: true
+              }
+            }
+          }
+        }
       });
-    },
+    };
 
-    async typeContent() {
-      console.log("testing....");
 
+const typeContent = () => {
+  let index = 0;
+  const setText = () => {
+    if (index < CertiSummary.value.aiSummary.length) {
+      displayText.value += CertiSummary.value.aiSummary[index];
+      index++;
+    } else {
+      clearInterval(typingInterval);
+    }
+  };
+  const typingInterval = setInterval(setText, 100); // 타이핑 속도를 필요에 따라 조절하세요
+};
+
+    onMounted(() => {
+      renderBarCharts();
+      renderLineCharts();
+      typeContent();
+      CertificationInfo();
+    });
+
+    const CertificationInfo = async () => {
       try {
-        const response = await api.get('/api/certification/interest/testId');
+        const response = await api.get(`/api/certification/${certificationName.value}`);
         if (response && response.status === 200) {
-          const aiSummaries = response.data.map(item => item.aiSummary);
-          console.log('테스트 결과:', aiSummaries);
-          console.log('첫번째테스트 결과:', aiSummaries[0]);
-          console.log('두번째테스트 결과:', aiSummaries[1]);
+          const { qualification, organizer, registrationLink } = response.data;
+          CertiSummary.value.qualification = qualification;
+          CertiSummary.value.organizer = organizer;
+          CertiSummary.value.registrationLink = registrationLink;
+          CertiSummary.value.aiSummary=aiSummary;
         }
       } catch (error) {
-        console.error('테스트 결과 오류:', error.response.data.msg);
+        console.error("테스트 결과 오류:", error.response.data.msg);
       }
-    }
-  },
-};
-</script>
+    };
 
+
+
+
+</script>
 
 
 <style scoped lang="scss">
@@ -528,23 +489,23 @@ export default {
   padding: 10px 30px;
   font-size: 1.1rem;
   width: auto;
-  color: #77b2ed;
+  color: #8777ed;
   border: 1px;
 }
 
 
 
 .active {
-  color: #4778ef;
+  color: #6b47ef;
   font-weight: bold;
   font-size: 1.2rem;
-  background: rgba(199, 229, 251, 0.72);
+  background: rgba(209, 199, 251, 0.72);
 }
 
 /*탭 내용 호버시*/
 .q-card:hover {
-  background: rgba(238, 247, 255, 0.71);
-  color: #546dd1;
+  background: rgba(242, 238, 255, 0.71);
+  color: #8254d1;
 }
 .contents {
   padding: 2% 0;
@@ -594,13 +555,13 @@ td {
   font-size: 1rem;
   font-weight: bold;
   padding: 10px;
-  background: rgb(232, 244, 255);
+  background: rgb(238, 232, 255);
   width: 100px;
 }
 
 .tableContent {
   font-size: 0.9rem;
-  background: rgba(238, 247, 255, 0.71);
+  background: rgba(242, 238, 255, 0.71);
   color: #000000;
   padding: 10px;
   height: 100%;
@@ -609,7 +570,7 @@ td {
 
 .aiSummary {
   width: 49%;
-  background: rgba(238, 247, 255, 0.71);
+  background: rgba(240, 238, 255, 0.71);
   height: 250px;
   border-radius: 10px;
   padding:1%

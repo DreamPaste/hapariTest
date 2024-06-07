@@ -1,8 +1,8 @@
 <template>
-  <q-card class="flex align-center justify-center bg-white text-blue-9" flat bordered style="width:90%; margin:2%; padding:2%; height:620px; border-radius: 10px">
+  <q-card class="flex align-center justify-center bg-white text-indigo-9" flat bordered style="width:90%; margin:2%; padding:2%; height:620px; border-radius: 10px">
     <q-card-section>
       <div class="flex align-center justify-center text-bold" style="font-size: 1.7rem; margin: 15% 5%">
-        <img src="src/assets/Image/순위.jpg" alt="순위" style="width:15%; height: 15%; margin-right:5%" />
+        <img src="src/assets/Image/순위.png" alt="순위" style="width:15%; height: 15%; margin-right:5%" />
         실시간 검색어
       </div>
       <div class="flex align-center justify-center" style="font-size: 1.2rem; width:90%; margin-left:5%">
