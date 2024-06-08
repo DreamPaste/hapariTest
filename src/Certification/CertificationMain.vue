@@ -90,90 +90,28 @@
         </div>
       </div>
 
-      <!-- 전공관련, 그래프, 정보플러스 묶음 -->
+      <!-- 국가자격, 그래프, 정보플러스 묶음 -->
       <div class="col-5 row flex align-center justify-center" style="width:100%">
-        <!-- 전공관련 -->
+        <!-- 국가자격, 민간 자격관련 -->
       <div class="col-6 column flex align-center justify-center" style="padding: 1%; ">
-        <!-- 국가자격 -->
-        <div class="col-6 column"  >
-          <q-card flat bordered style="padding: 5%; border-radius: 10px; ">
-          <div class="col-3 flex row align-center justify-between">
-          <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">국가 자격증</span>
-            <q-btn flat class="text-indigo-7 bg-indigo-1" style="border-radius: 20px">더보기</q-btn>
-          </div>
-          <div class="col-9 row" style="height: 315px; margin-top: 5%">
-            <!-- 국가자격 예시 -->
-            <div class="col-6 column" >
-              <q-tree
-                :nodes="simple"
-                node-key="label"
-                style="font-size: 1rem;
-                 margin-bottom: 5%"
-              />
-              <q-tree
-                :nodes="simple"
-                node-key="label"
-                style="font-size: 1rem;
-                margin-bottom: 5%"
-              />
-            </div>
-            <div class="col-6 column">
-              <q-tree
-                :nodes="simple"
-                node-key="label"
-                style="font-size: 1rem;
-                margin-bottom: 5%"
-              />
-              <q-tree
-                :nodes="simple"
-                node-key="label"
-                style="font-size: 1rem;
-                margin-bottom: 5%"
-              />
-            </div>
-          </div>
-          </q-card>
-        </div>
-        <!-- 민간자격 -->
-        <div class="col-6 column" >
-          <q-card flat bordered style="padding:5%; border-radius: 10px; margin-top: 2%">
+        <!-- 국가자격, 민간 자격-->
+        <div v-for="(treeData, index) in treeList" :key="index" class="col-6 column">
+          <q-card flat bordered style="padding: 5%; border-radius: 10px; margin-top: 2%">
             <div class="col-3 flex row align-center justify-between">
-              <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">민간 자격증</span>
+              <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">{{ treeData.title }}</span>
               <q-btn flat class="text-indigo-7 bg-indigo-1" style="border-radius: 20px">더보기</q-btn>
             </div>
-            <div class="col-9 row" style="height: 315px;  margin-top: 5%">
-              <!-- 민간자격 예시-->
-              <div class="col-6 column">
+            <div class="col-9 row" style="height: 315px; margin-top: 5%">
+              <div class="col-6 column" v-for="(nodeData, nodeIndex) in treeData.nodes" :key="nodeIndex">
                 <q-tree
-                  :nodes="simple"
+                  :nodes="nodeData"
                   node-key="label"
                   style="font-size: 1rem;
-                margin-bottom: 5%"
-                />
-                <q-tree
-                  :nodes="simple"
-                  node-key="label"
-                  style="font-size: 1rem;
-                margin-bottom: 5%"
+                     margin-bottom: 5%"
                 />
               </div>
-              <div class="col-6 column">
-                <q-tree
-                  :nodes="simple"
-                  node-key="label"
-                  style="font-size: 1rem;
-                margin-bottom: 5%"
-                />
-                <q-tree
-                  :nodes="simple"
-                  node-key="label"
-                  style="font-size: 1rem;
-                margin-bottom: 5%"
-                />
-              </div>
-              </div>
+            </div>
           </q-card>
-
         </div>
         </div>
         <!-- 그래프, 정보플러스 묶음 -->
@@ -288,27 +226,29 @@ export default {
       }
     };
 
-    const simple = [
+    const treeList = ref([
       {
-        label: '대한민국 한자 교육 연구회',
-        children: [
-          {
-            label: 'Good food ',
-          },
-          {
-            label: 'Good service',
-          },
-
+        title: '국가 자격증',
+        nodes: [
+          [{ label: '대한민국 한자 교육 연구회', children: [{ label: 'Good food' }, { label: 'Good service' }] }],
+          [{ label: '기술 자격증', children: [{ label: '기술 시험' }, { label: '기술 인증' }] }]
+        ]
+      },
+      {
+        title: '민간 자격증',
+        nodes: [
+          [{ label: 'IT 자격증', children: [{ label: '프로그래밍' }, { label: '데이터베이스' }] }],
+          [{ label: '디자인 자격증', children: [{ label: '그래픽 디자인' }, { label: '웹 디자인' }] }]
         ]
       }
-    ];
+    ]);
 
     return {
       text,
       certifications,
       goInfoPlus,
       InfoCerti,
-      simple
+      treeList
     };
   }
 };
