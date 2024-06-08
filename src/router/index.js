@@ -14,7 +14,7 @@ const router = createRouter({
   },
   // 자격증 메인페이지
   {
-    path: '/CertificationMain',
+    path: '/',
     name: 'CertificationMain',
     component: () => import('src/Certification/CertificationMain.vue'),
     props: true
@@ -98,7 +98,7 @@ const router = createRouter({
   },
     // 검색시 페이지
     {
-      path: '/',
+      path: '/SearchPage',
       name: 'SearchPage',
       component: () => import('src/Main/SearchPage.vue'),
       props: true

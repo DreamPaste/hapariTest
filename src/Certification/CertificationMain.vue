@@ -93,22 +93,103 @@
       <!-- 전공관련, 그래프, 정보플러스 묶음 -->
       <div class="col-5 row flex align-center justify-center" style="width:100%">
         <!-- 전공관련 -->
-      <div class="col-6 column flex align-center justify-center" style="background: #caf497;">
-전공관련
+      <div class="col-6 column flex align-center justify-center" style="padding: 1%; ">
+        <!-- 국가자격 -->
+        <div class="col-6 column"  >
+          <q-card flat bordered style="padding: 5%; border-radius: 10px; ">
+          <div class="col-3 flex row align-center justify-between">
+          <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">국가 자격증</span>
+            <q-btn flat class="text-indigo-7 bg-indigo-1" style="border-radius: 20px">더보기</q-btn>
+          </div>
+          <div class="col-9 row" style="height: 315px; margin-top: 5%">
+            <!-- 국가자격 예시 -->
+            <div class="col-6 column" >
+              <q-tree
+                :nodes="simple"
+                node-key="label"
+                style="font-size: 1rem;
+                 margin-bottom: 5%"
+              />
+              <q-tree
+                :nodes="simple"
+                node-key="label"
+                style="font-size: 1rem;
+                margin-bottom: 5%"
+              />
+            </div>
+            <div class="col-6 column">
+              <q-tree
+                :nodes="simple"
+                node-key="label"
+                style="font-size: 1rem;
+                margin-bottom: 5%"
+              />
+              <q-tree
+                :nodes="simple"
+                node-key="label"
+                style="font-size: 1rem;
+                margin-bottom: 5%"
+              />
+            </div>
+          </div>
+          </q-card>
+        </div>
+        <!-- 민간자격 -->
+        <div class="col-6 column" >
+          <q-card flat bordered style="padding:5%; border-radius: 10px; margin-top: 2%">
+            <div class="col-3 flex row align-center justify-between">
+              <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">민간 자격증</span>
+              <q-btn flat class="text-indigo-7 bg-indigo-1" style="border-radius: 20px">더보기</q-btn>
+            </div>
+            <div class="col-9 row" style="height: 315px;  margin-top: 5%">
+              <!-- 민간자격 예시-->
+              <div class="col-6 column">
+                <q-tree
+                  :nodes="simple"
+                  node-key="label"
+                  style="font-size: 1rem;
+                margin-bottom: 5%"
+                />
+                <q-tree
+                  :nodes="simple"
+                  node-key="label"
+                  style="font-size: 1rem;
+                margin-bottom: 5%"
+                />
+              </div>
+              <div class="col-6 column">
+                <q-tree
+                  :nodes="simple"
+                  node-key="label"
+                  style="font-size: 1rem;
+                margin-bottom: 5%"
+                />
+                <q-tree
+                  :nodes="simple"
+                  node-key="label"
+                  style="font-size: 1rem;
+                margin-bottom: 5%"
+                />
+              </div>
+              </div>
+          </q-card>
+
+        </div>
         </div>
         <!-- 그래프, 정보플러스 묶음 -->
       <div class="col-6 column flex align-center justify-center" style="height: 900px; ">
         <div class="col-4 column flex align-center justify-center" style="width:100%; padding:2%;">
-          <q-card class="flex align-center justify-center" flat bordered
-                  style="height:100%; padding:2%; border-radius: 10px">
-          <CertiMainHorizontal style="width:100%;  padding:2%"/>
+          <q-card class="graphbox flex align-center justify-center" flat
+                  style="height:100%; padding:2%; border-radius: 10px;
+">
+          <CertiMainHorizontal style="width:100%;  padding:2% ; "/>
           </q-card>
         </div>
         <div class="col-8 column flex align-center justify-center" style="padding:2%">
           <q-card flat bordered style="width: 100%; height: 100%; border-radius: 10px; padding: 2%;">
             <q-card-section class="col-2 row" style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; align-items: center; width: 60%;">
-                <span class="text-bold text-indigo-9" style="font-size: 1.8rem;">정보 PLUS</span>
+                <span class="text-bold text-indigo-7" style="font-size: 1.8rem;">정보 PLUS</span>
                 <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 11%; height: 10%; margin-left: 10px;" />
               </div>
               <q-btn flat class="bg-indigo-1 text-indigo-9" style="border-radius:18px " @click="goInfoPlus">더보기</q-btn>
@@ -172,10 +253,9 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import CertiDate from 'src/Certification/CertiDate.vue';
 import CertiMainHorizontal from 'src/Certification/CertiMainHorizontal.vue';
-import {api} from "boot/axios";
+import { api } from "boot/axios";
 
 export default {
-
   components: {
     CertiMainHorizontal,
     CertiDate,
@@ -207,11 +287,28 @@ export default {
         console.error('테스트 결과 오류:', error.response.msg);
       }
     };
+
+    const simple = [
+      {
+        label: '대한민국 한자 교육 연구회',
+        children: [
+          {
+            label: 'Good food ',
+          },
+          {
+            label: 'Good service',
+          },
+
+        ]
+      }
+    ];
+
     return {
       text,
       certifications,
       goInfoPlus,
       InfoCerti,
+      simple
     };
   }
 };
@@ -219,5 +316,12 @@ export default {
 
 
 <style scoped lang="scss">
+.graphbox{
+  background: linear-gradient(90deg, rgb(226, 220, 254) 0%, rgb(215, 207, 252) 30%, rgb(219, 217, 251) 60%, rgb(213, 194, 255) 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 
+}
 </style>

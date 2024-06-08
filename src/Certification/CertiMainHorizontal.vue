@@ -23,11 +23,10 @@ export default defineComponent({
           datasets: [
             {
               label: '합격률',
-              backgroundColor: [
-                "rgba(187,165,253,0.58)",
-                "rgba(199,187,255,0.56)",
-                "rgba(209,153,255,0.58)",
-              ],
+              borderRadius: 25,
+              barThickness: 27,
+              backgroundColor:
+                "rgb(255,255,255)",
               data: [40, 20, 12]
             },
 
@@ -39,14 +38,33 @@ export default defineComponent({
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'bottom',
-
+              display: false
             },
             title: {
               display: true,
               text: '합격률이 높은 자격증',
-              font:{
-              size: 18
+              color: 'white', // 제목 텍스트 색상을 하얀색으로 설정
+              font: {
+                size: 22,
+
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: 'white' // x축 레이블 텍스트 색상을 하얀색으로 설정
+              },
+              grid: {
+                color: 'rgba(255, 255, 255, 0.2)' // 선택 사항: 그리드 라인 색상 조정
+              }
+            },
+            y: {
+              ticks: {
+                color: 'white' // y축 레이블 텍스트 색상을 하얀색으로 설정
+              },
+              grid: {
+                color: 'rgba(255, 255, 255, 0.2)' // 선택 사항: 그리드 라인 색상 조정
               }
             }
           }

@@ -356,6 +356,11 @@ const router = useRouter();
           ]
         },
         options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+          },
           indexAxis: "y",
           scales: {
             x: {
@@ -395,6 +400,9 @@ const router = useRouter();
         },
         options: {
           plugins: {
+            legend: {
+              display: false
+            },
             title: {
               display: true,
               font: {
