@@ -6,7 +6,7 @@
       <div class="Certification-Title col-1 flex row items-start justify-center" style="width: 100%;">
 
         <!-- 자격증 이름 -->
-        <div class="Certification-Name col-6 flex row items-center justify-start text-indigo-9" style="width: 100%;">
+        <div class="Certification-Name col-6 flex row items-center justify-start text-primary" style="width: 100%;">
  {{certificationName}}
           </div>
 
@@ -22,7 +22,7 @@
           </div>
 
           <div class="col-6 flex row items-center justify-end" style="width: 50%; "  >
-            <q-btn class="certiBtn no-shadow bg-indigo-1 text-indigo-9 " icon="navigation" label="접수하기" flat
+            <q-btn class="certiBtn no-shadow text-accent bg-secondary " icon="navigation" label="접수하기" flat
                    style="width: 27%;
                    border-radius: 10px; "/>
 
@@ -65,7 +65,7 @@
         <!-- 표, ai 요약 묶음 -->
         <div class="TableAndAi col-3 flex row items-center justify-between"  style="width: 100%;  padding : 2% 0;">
           <!-- AI 요약 -->
-          <div class="aiSummary col-6 flex  column  text-indigo-9">
+          <div class="aiSummary col-6 flex  column  text-primary bg-secondary">
           <div class="ai-sum col-2 flex items-center justify-center" style="font-size:1.4rem; margin: 1% ">AI 요약</div>
           <div class="ai-content col-10 flex item-center justify-center">
             <span id="typing-text" style="font-size: 1.1rem">{{CertiSummary.aiSummary}}</span>
@@ -76,24 +76,24 @@
         <div class=" certiInfo-Table col-6 flex column" style="width: 49%; ">
           <table>
             <tr>
-              <td class="tableTitle bg-indigo-1 text-indigo-9" id="tableTarget1">대상</td>
+              <td class="tableTitle text-primary bg-secondary" id="tableTarget1">대상</td>
               <td class="tableContent flex items-center justify-start" id="tableTarget2" >{{ CertiSummary.qualification }}</td>
             </tr>
             <tr>
-              <td class="tableTitle bg-indigo-1 text-indigo-9">지역</td>
+              <td class="tableTitle text-primary bg-secondary">지역</td>
               <td class="tableContent flex items-center justify-start" ></td>
             </tr>
             <tr>
-              <td class="tableTitle bg-indigo-1 text-indigo-9">기관</td>
+              <td class="tableTitle text-primary bg-secondary">기관</td>
               <td class="tableContent flex items-center justify-start" >{{ CertiSummary.organizer }}</td>
             </tr>
 
             <tr>
-              <td class="tableTitle bg-indigo-1 text-indigo-9">응시료</td>
+              <td class="tableTitle text-primary bg-secondary">응시료</td>
               <td class="tableContent flex items-center justify-start"></td>
             </tr>
             <tr>
-              <td class="tableTitle bg-indigo-1 text-indigo-9" id="tableOnline1"> 접수링크</td>
+              <td class="tableTitle text-primary bg-secondary" id="tableOnline1"> 접수링크</td>
               <td class="tableContent flex items-center justify-start" id="tableOnline2">
                 <a>{{ CertiSummary.registrationLink }}</a>
               </td>
@@ -138,7 +138,7 @@
                 <template v-if="currentId === 'tab2'">
                   <!-- 관련 기사 정렬버튼 -->
                   <div style="display: flex; justify-content: flex-end;">
-                    <q-btn-dropdown class=" bg-indigo-1 text-indigo-9" flat  label="Dropdown Button " style="border-radius: 15px">
+                    <q-btn-dropdown class=" text-accent bg-secondary" flat  label="Dropdown Button " style="border-radius: 15px">
                       <q-list>
                         <q-item clickable v-close-popup @click="onItemClick">
                           <q-item-section>
@@ -188,7 +188,7 @@
                 <!-- 탭 3일 때 -->
                 <template v-if="currentId === 'tab3'">
                   <div style="display: flex; justify-content: flex-end;">
-                    <button class="writeBtn  bg-indigo-1 text-indigo-9" style="border-radius: 10px;margin-bottom: 10px; height: 30px; width: 17%; border: 0;" @click="goToCertiReview">
+                    <button class="writeBtn text-accent bg-secondary" style="border-radius: 10px;margin-bottom: 10px; height: 30px; width: 17%; border: 0;" @click="goToCertiReview">
                       <span class="recepWord " style=" font-size: 0.8rem; ">
                         나도 후기 쓰러가기
                         <!-- 연필 아이콘 -->
@@ -222,12 +222,12 @@
                       </div>
                     </q-card>
                     <div class="goodModBtn flex items-center justify-center "  >
-                      <q-btn flat class=" bg-indigo-1 text-indigo-9" icon="favorite"  label="좋아요"
+                      <q-btn flat class=" text-accent bg-secondary" icon="favorite"  label="좋아요"
                              style="
                              border-radius: 10%;
                              font-size:0.8rem;
                           margin-right: 1%"/>
-                      <q-btn flat class=" bg-indigo-1 text-indigo-9" @click="goToModifyPage" label="수정하기"
+                      <q-btn flat class=" text-accent bg-secondary" @click="goToModifyPage" label="수정하기"
                              style="
                               border-radius: 10%;
 
@@ -259,6 +259,7 @@ const router = useRouter();
     const selectedOption = ref(null);
     const options = ref(["url복사", "쪽지로 공유"]);
     const displayText = ref("");
+
     //자격증 후기
     const reviews = reactive([
       {
@@ -347,11 +348,12 @@ const router = useRouter();
               label: "소유 비율",
               data: [12, 5, 3],
               backgroundColor: [
-                "rgba(181,165,253,0.58)",
-                "rgba(206,187,255,0.56)",
-                "rgba(213,206,255,0.58)"
+                "rgba(198,195,253,0.58)",
+                "rgba(216,206,250,0.56)",
+                "rgba(211,212,250,0.58)"
               ],
-
+              borderRadius: 20,
+              barThickness: 30
             }
           ]
         },
@@ -394,7 +396,8 @@ const router = useRouter();
               label: "합격률",
               data: [30, 40, 85, 57, 88],
               backgroundColor: "rgb(180,168,255)",
-              borderWidth: 1
+              borderWidth: 1,
+
             }
           ]
         },
@@ -492,28 +495,26 @@ const typeContent = () => {
 }
 
 .tablinks {
-  border-radius: 7px 7px 0 0;
+  border-radius: 12px 12px 0 0;
   background: #ffffff;
   padding: 10px 30px;
   font-size: 1.1rem;
   width: auto;
-  color: #8777ed;
+  color:#7A88FF;
   border: 1px;
 }
 
-
-
 .active {
-  color: #6b47ef;
+  color: #ffffff;
   font-weight: bold;
   font-size: 1.2rem;
-  background: rgba(209, 199, 251, 0.72);
+  background: #bec5fb;
 }
 
 /*탭 내용 호버시*/
 .q-card:hover {
-  background: rgba(242, 238, 255, 0.71);
-  color: #8254d1;
+  background: #f4f5fd;
+  color: #7A88FF;
 }
 .contents {
   padding: 2% 0;
@@ -569,8 +570,8 @@ td {
 
 .tableContent {
   font-size: 0.9rem;
-  background: rgba(242, 238, 255, 0.71);
-  color: #000000;
+  background: #f5f7ff;
+  color: #3b2bad;
   padding: 10px;
   height: 100%;
 }
@@ -578,7 +579,6 @@ td {
 
 .aiSummary {
   width: 49%;
-  background: rgba(240, 238, 255, 0.71);
   height: 250px;
   border-radius: 10px;
   padding:1%

@@ -3,17 +3,17 @@
     <!-- 전체 감싸는 컨테이너 -->
     <div class="backgroundReview items-center justify-center" style="width: 1000px; height: 100%; background: rgba(255, 255, 255, 0.71);">
       <!-- 페이지 타이틀 -->
-      <div class="col-3 flex row" style="width: 100%;   font-weight: bold; font-size: 1.9rem; padding: 5%; margin-bottom: 10px">
-        <span class="text-indigo-7">자격증 후기 작성 &nbsp;</span>
+      <div class="col-3 flex row " style="width: 100%;   font-weight: bold; font-size: 2rem; padding: 5%; margin-bottom: 10px">
+        <span class="text-indigo-7 ">자격증 후기 작성 &nbsp;</span>
         <img src = "~/assets/Image/수정하기2.jpg" alt="수정하기" style="width:4%; height: 4%;"/>
       </div>
 
       <!-- 자격증 아이디 표시 -->
-      <div class="col-1 flex row" style="padding: 0 50px; margin-bottom: 30px;">
-        <q-card flat class="my-card bg-red-1 text-red-9" style="border-radius: 15px; ">
-          <q-card-section>
+      <div class="col-1 flex row " style="padding: 0 50px; margin-bottom: 30px;">
+        <q-card flat class="my-card bg-red-1 text-red-9 flex items-center justify-center" style="border-radius: 15px; width:14%; height:38px; font-size: 1rem">
+
             {{ certificationName }}
-          </q-card-section>
+
         </q-card>
       </div>
 
@@ -29,13 +29,13 @@
 
       <div class="col-3 flex row items-center justify-center">
         <!-- 저장 버튼 -->
-        <q-btn flat class="bg-indigo-1 text-indigo-9" @click="saveReview"
+        <q-btn flat class="text-accent bg-secondary" @click="saveReview"
                style="border-radius: 10px;
                padding: 10px;
                font-size: 1rem;
               width: 100px; height: 100%; margin-right: 2%;" label="저장" />
         <!-- 이전 버튼 -->
-        <q-btn flat class="bg-indigo-1 text-indigo-9" @click="goBack"
+        <q-btn flat class="text-accent bg-secondary" @click="goBack"
                style="border-radius: 10px;
                padding: 10px;
                font-size: 1rem;   width: 100px; height: 100%;" label="이전으로" />

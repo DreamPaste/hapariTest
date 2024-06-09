@@ -4,10 +4,10 @@
       <!-- 정보플러스 타이틀, 정렬버튼 -->
       <div class="col-2 row" style="display: flex; align-items: center; justify-content: space-evenly; margin-bottom: 2%; width:100%">
         <div style="display: flex; align-items: center; width:85%;">
-          <span class="text-bold text-blue-9" style="font-size:2.2rem;">정보 PLUS</span>
-          <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 6%; height: 6%; margin-left: 10px;" />
+          <span class="text-bold text-indigo-7" style="font-size:2.2rem;">정보 PLUS</span>
+          <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 4%; height:4%; margin-left: 10px;" />
         </div>
-        <q-btn-dropdown flat class="bg-blue-1 text-blue-9" label="추천순" style="border-radius:18px" @click="onMainClick">
+        <q-btn-dropdown flat class="text-accent bg-secondary" label="추천순" style="border-radius:18px" @click="onMainClick">
           <q-list>
             <q-item clickable v-close-popup @click="onItemClick">
               <q-item-section avatar>
@@ -23,9 +23,9 @@
         </q-btn-dropdown>
       </div>
       <div class="col-2 flex row items-center justify-center" style="width:100%; margin-bottom:5%">
-        <q-input color="blue-2" rounded outlined v-model="text" style="width:70%; font-size: 18px">
+        <q-input color="indigo-2" rounded outlined v-model="text" style="width:70%; font-size: 18px">
           <template v-slot:prepend>
-            <q-icon class="text-blue-2" name="search" size="33px"/>
+            <q-icon class="text-indigo-2" name="search" size="33px"/>
           </template>
         </q-input>
       </div>
@@ -35,7 +35,7 @@
           <q-card flat class="InfoCard row" style="width : 100%; border-radius: 10px; margin-bottom: 1%">
             <!-- 정보플러스 썸네일 -->
             <q-card-section class="col-2">
-              <img src="src/assets/Image/자격증 썸네일1.jpg" alt="정보플러스 썸네일" style="width: 100%; height: 100%;" />
+              <img src="src/assets/Image/자격증 썸네일1.png" alt="정보플러스 썸네일" style="width: 100%; height: 100%;" />
             </q-card-section>
             <q-card-section class="col-10 flex column items-start justify-evenly">
               <q-card-section class="text-bold" style="font-size: 1.3rem">
@@ -45,7 +45,7 @@
                 정보플러스 내용
               </q-card-section>
               <q-card-section>
-                <q-btn outline rounded class="text-blue-10" style="font-size: 0.7rem">#컴퓨터공학과</q-btn>
+                <q-btn outline rounded class="text-accent" style="font-size: 0.7rem">#컴퓨터공학과</q-btn>
               </q-card-section>
             </q-card-section>
           </q-card>
@@ -75,10 +75,11 @@ export default {
 
 <style scoped lang="scss">
 .InfoCard{
-  background: rgba(237, 243, 252, 0.92);
+ border:2px solid #edf1ff;
 }
 
 .InfoCard:hover {
-  background: rgba(222, 234, 255, 0.92);
+  background: #edf1ff;
+
 }
 </style>

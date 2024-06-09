@@ -1,80 +1,46 @@
 <template>
-  <div>
-    <canvas ref="canvas" ></canvas>
+  <div class="col-12 column flex align-center justify-center">
+    <div class="col-3 flex align-center justify-center">
+      <span class="text-bold text-white" style="font-size: 1.5rem;">합격률이 높은 자격증</span>
+    </div>
+    <div class="col-9 row flex align-center justify-center" style="padding: 2%">
+      <div
+        v-for="(cert, index) in certificates"
+        :key="index"
+        class="col-12 row flex align-center justify-center"
+      >
+        <span class="col-3 column text-bold text-white" style="font-size: 1rem">{{ cert.name }}</span>
+        <div class="col-9">
+          <q-linear-progress
+            rounded
+            size="20px"
+            :value="cert.progress"
+            color="white"
+            track-color="deep-purple-2"
+            style="margin-bottom: 5%; border-radius: 15px"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import {defineComponent, ref, onMounted} from 'vue';
-import {Chart, BarController, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend} from 'chart.js';
-
-Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
-
-export default defineComponent({
+export default {
   setup() {
-    const canvas = ref(null);
-
-    onMounted(() => {
-      new Chart(canvas.value, {
-        type: 'bar',
-        data: {
-          labels: ['자격증1',  '자격증2', '자격증3'],
-
-          datasets: [
-            {
-              label: '합격률',
-              borderRadius: 25,
-              barThickness: 27,
-              backgroundColor:
-                "rgb(255,255,255)",
-              data: [40, 20, 12]
-            },
-
-          ]
-        },
-        options: {
-          indexAxis: 'y', // This makes the bar chart horizontal
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
-            },
-            title: {
-              display: true,
-              text: '합격률이 높은 자격증',
-              color: 'white', // 제목 텍스트 색상을 하얀색으로 설정
-              font: {
-                size: 22,
-
-              }
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                color: 'white' // x축 레이블 텍스트 색상을 하얀색으로 설정
-              },
-              grid: {
-                color: 'rgba(255, 255, 255, 0.2)' // 선택 사항: 그리드 라인 색상 조정
-              }
-            },
-            y: {
-              ticks: {
-                color: 'white' // y축 레이블 텍스트 색상을 하얀색으로 설정
-              },
-              grid: {
-                color: 'rgba(255, 255, 255, 0.2)' // 선택 사항: 그리드 라인 색상 조정
-              }
-            }
-          }
-        }
-      });
-    });
+    const certificates = [
+      { name: '자격증1', progress: 0.4 },
+      { name: '자격증2', progress: 0.6 },
+      { name: '자격증3', progress: 0.8 }
+    ];
 
     return {
-      canvas
+      certificates
     };
   }
-});
+};
 </script>
+
+<style scoped lang="scss">
+
+</style>

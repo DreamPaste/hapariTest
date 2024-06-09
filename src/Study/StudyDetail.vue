@@ -22,7 +22,7 @@
             <q-card-section horizontal >
               <q-card-section class="col-3 column" style="height:180px;">
                 <!-- 아이콘 사야함 !!! -->
-                <img src = "src/assets/Image/자격증 썸네일1.jpg" alt="자격증 썸네일1" style="width:100%; height: 100%"/>
+                <img src = "src/assets/Image/자격증 썸네일1.png" alt="자격증 썸네일1" style="width:100%; height: 100%"/>
               </q-card-section>
 
               <q-separator vertical />
@@ -48,7 +48,7 @@
       </tr>
     </table>
 
-    <q-btn outline rounded class="text-purple-10 "> # 공모전</q-btn>
+    <q-btn outline rounded class="text-accent "> # 공모전</q-btn>
   </q-card>
 </div>
 </template>

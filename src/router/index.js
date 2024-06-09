@@ -14,7 +14,7 @@ const router = createRouter({
   },
   // 자격증 메인페이지
   {
-    path: '/',
+    path: '/CertificationMain',
     name: 'CertificationMain',
     component: () => import('src/Certification/CertificationMain.vue'),
     props: true
@@ -61,6 +61,20 @@ const router = createRouter({
     component: () => import('src/Certification/InfoPlus.vue'),
     props: true
   },
+    // 국가자격증, 민간자격증
+    {
+      path: '/nationalCertification',
+      name: 'nationalCertification',
+      component: () => import('src/Certification/nationalCertification.vue'),
+      props: true
+    },
+    // 자격증 메인페이지 정보플러스
+    {
+      path: '/MainInfoPlus',
+      name: 'MainInfoPlus',
+      component: () => import('src/Certification/MainInfoPlus.vue'),
+      props: true
+    },
   // 공모전 테이블
   {
     path: '/InfoTable',
@@ -84,7 +98,7 @@ const router = createRouter({
   },
   // 스터디 상세페이지
   {
-    path: '/StudyInfo',
+    path: '/',
     name: 'StudyInfo',
     component: () => import('src/Study/StudyInfo.vue'),
     props: true

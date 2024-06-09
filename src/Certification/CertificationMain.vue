@@ -66,14 +66,14 @@
                 <q-card-section class="col-3 row flex align-center justify-center text-indigo-9 text-bold"
                                 style="margin:2%; width : 80% ; height :70px; border-bottom:1px solid rgba(185,185,185,0.55)" >
                   <img src = "src/assets/Image/체크.png" alt="체크" style="width:16%; height: 90%; "/>
-                  &nbsp; <span class="checkCerti" style="font-size: 1.5rem"> 접수중인 자격증</span>
+                  &nbsp; <span class="checkCerti text-primary" style="font-size: 1.5rem"> 접수중인 자격증</span>
 
                 </q-card-section>
 
                 <div class="q-gutter-sm">
                   <div v-for="(certification, index) in certifications" :key="index" style="width: 100%">
                     <q-checkbox
-                      class="text-indigo-5"
+                      class="text-accent"
                       v-model="certification.checked"
                       :label="certification.label"
                       color="indigo-4"
@@ -95,24 +95,7 @@
         <!-- 국가자격, 민간 자격관련 -->
       <div class="col-6 column flex align-center justify-center">
         <!-- 국가자격, 민간 자격-->
-        <div v-for="(treeData, index) in treeList" :key="index" class="col-6 column">
-          <q-card flat bordered style="padding: 5%; border-radius: 10px; margin-top: 2%">
-            <div class="col-3 flex row align-center justify-between">
-              <span class="text-indigo-7 text-bold" style="font-size: 1.5rem">{{ treeData.title }}</span>
-              <q-btn flat class="text-indigo-7 bg-indigo-1" style="border-radius: 20px">더보기</q-btn>
-            </div>
-            <div class="col-9 row" style="height: 315px; margin-top: 5%">
-              <div class="col-6 column" v-for="(nodeData, nodeIndex) in treeData.nodes" :key="nodeIndex">
-                <q-tree
-                  :nodes="nodeData"
-                  node-key="label"
-                  style="font-size: 1rem;
-                     margin-bottom: 5%"
-                />
-              </div>
-            </div>
-          </q-card>
-        </div>
+       <nationalCertification/>
         </div>
         <!-- 그래프, 정보플러스 묶음 -->
       <div class="col-6 column flex align-center justify-center" style="height: 900px; ">
@@ -124,59 +107,7 @@
           </q-card>
         </div>
         <div class="col-8 column flex align-center justify-center" style="padding:2%">
-          <q-card flat bordered style="width: 100%; height: 100%; border-radius: 10px; padding: 2%;">
-            <q-card-section class="col-2 row" style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; width: 60%;">
-                <span class="text-bold text-indigo-7" style="font-size: 1.8rem;">정보 PLUS</span>
-                <img src="src/assets/Image/플러스.png" alt="플러스" style="width: 11%; height: 10%; margin-left: 10px;" />
-              </div>
-              <q-btn flat class="bg-indigo-1 text-indigo-9" style="border-radius:18px " @click="goInfoPlus">더보기</q-btn>
-            </q-card-section>
-
-            <!-- 정보플러스 1 -->
-            <q-card-section class="col-5 row " style="width: 100%;font-size: 1.3rem; margin:2%">
-              <q-card-section horizontal >
-                <q-card-section class="col-4 column" style="height:180px;">
-                  <!-- 아이콘 사야함 !!! -->
-                  <img src = "src/assets/Image/자격증 썸네일1.jpg" alt="자격증 썸네일" style="width:100%; height: 100%"/>
-                </q-card-section>
-
-                <q-separator vertical />
-
-                <q-card-section class="col-8 column flex align-center justify-center" style="height:180px; ">
-                  <q-card-section class="col-8 row " style="width: 100%; font-size:1rem">
-                   자격증 관련 정보!?뉴스!?
-                  </q-card-section>
-
-                  <q-card-section class="col-4 row flex align-end justify-center">
-                    <q-btn class="bg-red-1 text-red-9" flat  icon="favorite" label="좋아요" style="border-radius: 10px"/>
-                  </q-card-section>
-                </q-card-section>
-              </q-card-section>
-            </q-card-section>
-
-            <!-- 정보플러스 2 -->
-            <q-card-section class="col-5 row" style="width: 100%;font-size: 1.3rem; margin:2%">
-              <q-card-section horizontal >
-                <q-card-section class="col-4 column" style="height:180px;">
-                  <!-- 아이콘 사야함 !!! -->
-                  <img src = "src/assets/Image/자격증 썸네일1.jpg" alt="자격증 썸네일" style="width:100%; height: 100%"/>
-                </q-card-section>
-
-                <q-separator vertical />
-
-                <q-card-section class="col-8 column flex align-center justify-center" style="height:180px; ">
-                  <q-card-section class="col-8 row " style="width: 100%;font-size:1rem">
-                    자격증 관련 정보!?뉴스!?
-                  </q-card-section>
-
-                  <q-card-section class="col-4 row flex align-end justify-center">
-                    <q-btn class="bg-red-1 text-red-9" flat  icon="favorite" label="좋아요" style="border-radius: 10px"/>
-                  </q-card-section>
-                </q-card-section>
-              </q-card-section>
-            </q-card-section>
-          </q-card>
+<MainInfoPlus/>
         </div>
       </div>
 
@@ -188,9 +119,10 @@
 <script>
 import CertiRealTime from 'src/Certification/CertiRealTime.vue';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import CertiDate from 'src/Certification/CertiDate.vue';
 import CertiMainHorizontal from 'src/Certification/CertiMainHorizontal.vue';
+import nationalCertification from 'src/Certification/nationalCertification.vue';
+import MainInfoPlus from 'src/Certification/MainInfoPlus.vue';
 import { api } from "boot/axios";
 
 export default {
@@ -198,9 +130,10 @@ export default {
     CertiMainHorizontal,
     CertiDate,
     CertiRealTime,
+    nationalCertification,
+    MainInfoPlus,
   },
   setup() {
-    const router = useRouter();
     const text = ref('');
     const certifications = ref([
       { label: '정보처리기사', checked: false },
@@ -208,10 +141,6 @@ export default {
       { label: '정보처리기사', checked: false },
       { label: '정보처리기사', checked: false },
     ]);
-
-    const goInfoPlus = () => {
-      router.push({ name: 'InfoPlus' });
-    };
 
     const InfoCerti = async () => {
       console.log("자격증 테스트중");
@@ -226,29 +155,12 @@ export default {
       }
     };
 
-    const treeList = ref([
-      {
-        title: '국가 자격증',
-        nodes: [
-          [{ label: '대한민국 한자 교육 연구회', children: [{ label: 'Good food' }, { label: 'Good service' }] }],
-          [{ label: '기술 자격증', children: [{ label: '기술 시험' }, { label: '기술 인증' }] }]
-        ]
-      },
-      {
-        title: '민간 자격증',
-        nodes: [
-          [{ label: 'IT 자격증', children: [{ label: '프로그래밍' }, { label: '데이터베이스' }] }],
-          [{ label: '디자인 자격증', children: [{ label: '그래픽 디자인' }, { label: '웹 디자인' }] }]
-        ]
-      }
-    ]);
+
 
     return {
       text,
       certifications,
-      goInfoPlus,
       InfoCerti,
-      treeList
     };
   }
 };
@@ -257,7 +169,7 @@ export default {
 
 <style scoped lang="scss">
 .graphbox{
-  background: linear-gradient(90deg, rgb(226, 220, 254) 0%, rgb(215, 207, 252) 30%, rgb(219, 217, 251) 60%, rgb(213, 194, 255) 100%);
+  background: linear-gradient(20deg, rgb(229, 231, 255) 0%, rgba(224, 220, 253, 0.86) 30%, rgb(241, 227, 255) 60%, rgb(224, 220, 251) 100%);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
