@@ -93,7 +93,7 @@
       <!-- 국가자격, 그래프, 정보플러스 묶음 -->
       <div class="col-5 row flex align-center justify-center" style="width:100%">
         <!-- 국가자격, 민간 자격관련 -->
-      <div class="col-6 column flex align-center justify-center" style="padding: 1%; ">
+      <div class="col-6 column flex align-center justify-center">
         <!-- 국가자격, 민간 자격-->
         <div v-for="(treeData, index) in treeList" :key="index" class="col-6 column">
           <q-card flat bordered style="padding: 5%; border-radius: 10px; margin-top: 2%">
