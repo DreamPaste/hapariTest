@@ -91,14 +91,14 @@ const router = createRouter({
   },
   // 공모전 상세페이지
   {
-    path: '/contestInfo',
+    path: '/',
     name: 'contestInfo',
     component: () => import('src/Contest/contestInfo.vue'),
     props: true
   },
   // 스터디 상세페이지
   {
-    path: '/',
+    path: '/StudyInfo',
     name: 'StudyInfo',
     component: () => import('src/Study/StudyInfo.vue'),
     props: true
