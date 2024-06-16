@@ -91,7 +91,7 @@ const router = createRouter({
   },
   // 공모전 상세페이지
   {
-    path: '/',
+    path: '/contestInfo',
     name: 'contestInfo',
     component: () => import('src/Contest/contestInfo.vue'),
     props: true
@@ -115,6 +115,34 @@ const router = createRouter({
       path: '/SearchPage',
       name: 'SearchPage',
       component: () => import('src/Main/SearchPage.vue'),
+      props: true
+    },
+    // 포트폴리오
+    {
+      path: '/',
+      name: 'PortFolio',
+      component: () => import('src/PortFolio/PortFolio.vue'),
+      props: true
+    },
+    // 포트폴리오 개인정보
+    {
+      path: '/PortFolioInfo',
+      name: 'PortFolioInfo',
+      component: () => import('src/PortFolio/PortFolioInfo.vue'),
+      props: true
+    },
+    // 포트폴리오 스킬
+    {
+      path: '/PortFolioSkill',
+      name: 'PortFolioSkill',
+      component: () => import('src/PortFolio/PortFolioSkill.vue'),
+      props: true
+    },
+    // 포트폴리오 오른쪽 내용
+    {
+      path: '/PortFolioContent',
+      name: 'PortFolioContent',
+      component: () => import('src/PortFolio/PortFolioContent.vue'),
       props: true
     },
   { // 추가 (오류)
